@@ -1,0 +1,12 @@
+services:
+  - name: app
+    startCommand: node server.js
+    buildCommand: npm install
+
+routes:
+  - path: /api
+    destination: app
+
+files:
+  - source: cors.json
+    mount: /app/cors.json
