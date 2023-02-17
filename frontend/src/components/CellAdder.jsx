@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const CellAdder = ({ boardData, setBoardData }) => {
   const [cell, setCell] = useState('');
+  const inputRef = useRef(null);
 
   const handleChange = (event) => {
     setCell(event.target.value);
@@ -15,7 +16,9 @@ const CellAdder = ({ boardData, setBoardData }) => {
         cells: [...boardData.cells, cell],
       });
     }
+    // TODO: add focus on input
     setCell('');
+    inputRef.current.focus();
   };
 
   return (
@@ -29,7 +32,8 @@ const CellAdder = ({ boardData, setBoardData }) => {
             id="cell"
             value={cell}
             onChange={handleChange}
-          ></input>
+            ref={inputRef}
+          />
           <button className="btn" onClick={addCell}>
             Add Cell
           </button>

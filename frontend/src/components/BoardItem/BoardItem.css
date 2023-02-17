@@ -1,11 +1,19 @@
+:root {
+  --main-color: #724aa2;
+  --light-color: #9d7dc4;
+  --dark-color: #4a3465;
+}
+
 .board {
-  background-color: #f4f4f4;
   margin: 10px 0;
   padding: 30px 20px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  border: 2px solid var(--main-color);
+  border-radius: 10px;
+  color: var(--dark-color);
 }
 
 .board h2,
@@ -46,4 +54,13 @@
 
 .close {
   position: relative;
+}
+
+/* Media queries */
+
+/* Media query for screens smaller than 768px wide */
+@media screen and (max-width: 767px) {
+  .board {
+    align-items: stretch;
+  }
 }

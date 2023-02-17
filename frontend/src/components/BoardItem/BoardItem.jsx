@@ -23,7 +23,7 @@ const BoardItem = ({ board }) => {
       >
         x
       </button>
-      <Link to={`/play/${board._id}`} className="btn">
+      <Link to={`/play/${board._id}`} className="btn btn-reverse">
         Play
       </Link>
     </div>

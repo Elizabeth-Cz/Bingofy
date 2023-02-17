@@ -1,26 +1,35 @@
-.board-cell.active {
-  background-color: #568e9a;
-  color: #fff;
+:root {
+  --main-color: #724aa2;
+  --light-color: #9d7dc4;
+  --dark-color: #4a3465;
 }
+
 .board-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 3px;
+  /* aspect-ratio: 1/1; */
 }
 
 .board-cell {
-  /* aspect-ratio: 1/1; */
-  background-color: #e6e6e6;
   border-radius: 5px;
+  border: 2px solid var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 4px;
-  transition: all ease-in 100ms;
   min-height: 80px;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
 }
+
+.board-cell.active {
+  background: linear-gradient(135deg, #724aa2 0%, #4a3465 100%);
+  color: #fff;
+}
+
 .buttons {
   width: 300px;
   display: flex;
@@ -30,10 +39,16 @@
   margin: 5px 0;
 }
 .bingo {
-  display: inline;
-  letter-spacing: 5px;
-  font-weight: 900;
-  color: hsl(191, 28%, 30%);
+  position: absolute;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  line-height: 500%;
+}
+
+.bingo .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 .no-bingo {
@@ -59,7 +74,7 @@
  * animation tracking-in-expand-fwd
  * ----------------------------------------
  */
-@-webkit-keyframes tracking-in-expand-fwd {
+/* @-webkit-keyframes tracking-in-expand-fwd {
   0% {
     letter-spacing: -0.5em;
     -webkit-transform: translateZ(-700px);
@@ -89,5 +104,26 @@
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     opacity: 1;
+  }
+} */
+
+/* Media query for screens smaller than 768px wide */
+@media screen and (max-width: 767px) {
+  .board-cell {
+    padding: 2px;
+    min-height: unset;
+  }
+  .board-grid {
+    font-size: 11px;
+    gap: 2px;
+    aspect-ratio: unset;
+  }
+
+  .board-cell {
+    border-width: 1px;
+  }
+
+  .bingo {
+    width: 100%;
   }
 }

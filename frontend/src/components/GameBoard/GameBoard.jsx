@@ -64,6 +64,11 @@ const GameBoard = ({ board }) => {
     localStorage.setItem('board ' + board._id, JSON.stringify(boardInfo));
   }, [boardInfo, board]);
 
+  // TODO: shuffle on first render
+  // useEffect(() => {
+  //   if ((boardInfo.activeCells = [])) shuffleCells();
+  // }, []);
+
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
@@ -77,16 +82,17 @@ const GameBoard = ({ board }) => {
     <div className="content">
       <div className="buttons">
         <h3>Bingofy {boardInfo.title}</h3>
-        <h2 className={isBingo ? 'tracking-in-expand-fwd bingo' : 'no-bingo'}>
-          BINGO
-        </h2>
+        <div className={isBingo ? 'tracking-in-expand-fwd bingo' : 'no-bingo'}>
+          <button className="close">x</button>
+          <h2>BINGO</h2>
+        </div>
 
         {boardInfo.activeCells.length === 0 ? (
-          <button className="btn" onClick={shuffleCells}>
+          <button className="btn btn-reverse btn-s" onClick={shuffleCells}>
             Shuffle Cells
           </button>
         ) : (
-          <button className="btn" onClick={resetCells}>
+          <button className="btn btn-reverse" onClick={resetCells}>
             Reset
           </button>
         )}
@@ -104,7 +110,7 @@ const GameBoard = ({ board }) => {
               checkBingo(boardInfo.activeCells);
             }}
           >
-            <p>{cell}</p>
+            {cell}
           </div>
         ))}
       </div>

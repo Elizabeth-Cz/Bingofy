@@ -1,7 +1,7 @@
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
+:root {
+  --main-color: #724aa2;
+  --light-color: #9d7dc4;
+  --dark-color: #4a3465;
 }
 
 .form-group {
@@ -17,6 +17,11 @@
   border-radius: 5px;
   margin-bottom: 10px;
   font-family: inherit;
+}
+
+input:focus {
+  outline: 1px solid var(--main-color);
+  box-shadow: 0 0 5px 1px var(--light-color);
 }
 
 .form-group label {

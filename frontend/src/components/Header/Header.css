@@ -1,9 +1,15 @@
+:root {
+  --main-color: #724aa2;
+  --light-color: #9d7dc4;
+  --dark-color: #4a3465;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid var(--light-color);
 }
 
 .header ul {
@@ -19,12 +25,19 @@
 .header ul li a {
   display: flex;
   align-items: center;
+  transition: color linear 100ms;
 }
 
 .header ul li a:hover {
-  color: #777;
+  color: var(--light-color);
 }
 
 .header ul li a svg {
   margin-right: 5px;
+}
+
+/* Media queries */
+
+/* Media query for screens smaller than 768px wide */
+@media screen and (max-width: 767px) {
 }
