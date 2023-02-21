@@ -9,7 +9,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 3px;
-  /* aspect-ratio: 1/1; */
+  aspect-ratio: 1/1;
 }
 
 .board-cell {
@@ -21,11 +21,10 @@
   cursor: pointer;
   padding: 4px;
   min-height: 80px;
-  border: 2px solid var(--main-color);
   color: var(--main-color);
 }
 
-.board-cell.active {
+.board-cell.active-cell {
   background: linear-gradient(135deg, #724aa2 0%, #4a3465 100%);
   color: #fff;
 }
@@ -107,16 +106,43 @@
   }
 } */
 
-/* Media query for screens smaller than 768px wide */
-@media screen and (max-width: 767px) {
+/* Media queries */
+
+/* Media query for screens between 360px and 469px wide */
+@media screen and (min-width: 360px) and (max-width: 469px) {
+  .content {
+    width: 100%;
+  }
+  .board-grid {
+    font-size: 11px;
+    aspect-ratio: unset;
+    gap: 0;
+    /* overflow: hidden; */
+  }
+  .board-cell {
+    min-height: 90px;
+    border-radius: 0;
+    padding: 2px;
+    border-width: 1px;
+  }
+}
+
+/* Media query for screens between 470px and 599px wide */
+@media screen and (min-width: 470px) and (max-width: 599px) {
+  .board-grid {
+    font-size: 11px;
+    aspect-ratio: unset;
+  }
+}
+
+/* Media query for screens between 600px and 767px wide */
+@media screen and (min-width: 600px) and (max-width: 767px) {
   .board-cell {
     padding: 2px;
     min-height: unset;
   }
   .board-grid {
-    font-size: 11px;
     gap: 2px;
-    aspect-ratio: unset;
   }
 
   .board-cell {
@@ -126,4 +152,7 @@
   .bingo {
     width: 100%;
   }
+}
+/* Media query for screens between 768px and 1024px wide */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 }

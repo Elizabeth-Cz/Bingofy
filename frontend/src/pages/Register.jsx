@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { FaUser } from 'react-icons/fa';
 import { register, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner/Spinner';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -120,6 +121,9 @@ const Register = () => {
             </button>
           </div>
         </form>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </section>
     </>
   );

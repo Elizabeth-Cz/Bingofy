@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner/Spinner';
@@ -27,7 +27,7 @@ function Login() {
     }
 
     if (isSuccess || user) {
-      navigate('/');
+      navigate('/myboards');
     }
 
     dispatch(reset());
@@ -93,6 +93,9 @@ function Login() {
             </button>
           </div>
         </form>
+        <p>
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
       </section>
     </>
   );

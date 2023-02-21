@@ -1,34 +1,30 @@
-:root {
-  --main-color: #724aa2;
-  --light-color: #9d7dc4;
-  --dark-color: #4a3465;
-}
-
-.board {
+.board-item {
   margin: 10px 0;
-  padding: 30px 20px;
+  padding: 20px;
   position: relative;
   display: flex;
+  align-items: center;
+  border-bottom: 1px solid #8c8c8c;
+  /* border-radius: 10px; */
+  /* border: 2px solid black; */
   justify-content: space-between;
-  align-items: flex-end;
-  border: 2px solid var(--main-color);
-  border-radius: 10px;
-  color: var(--dark-color);
-}
-
-.board h2,
-.board p {
   text-align: left;
-  flex-grow: 1;
 }
 
-.board .cells-list {
+/* .board-item h2, */
+.board-item p {
+  text-align: left;
+  margin-right: 2rem;
+  margin-left: auto;
+}
+
+.board-item .cells-list {
   max-height: 150px;
   overflow: auto;
   display: block;
 }
 
-.board .tags-list {
+.board-item .tags-list {
   justify-content: center;
   margin: 10px;
 }
@@ -40,13 +36,18 @@
   background: none;
 }
 
-.board .close {
+.board-item .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 3px;
+  left: 3px;
+  color: #8c8c8c;
+  font-size: 1.2rem;
+}
+.board-item .close:hover {
+  color: tomato;
 }
 
-.board .edit {
+.board-item .edit {
   top: 10px;
   left: 15px;
   position: absolute;
@@ -60,7 +61,17 @@
 
 /* Media query for screens smaller than 768px wide */
 @media screen and (max-width: 767px) {
-  .board {
-    align-items: stretch;
+  .board-item {
+    gap: 7px;
+    padding: 20px 10px;
+  }
+  .board-item h2 {
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .board-item p {
+    text-align: right;
+    flex-grow: 1;
+    margin-left: 0;
   }
 }

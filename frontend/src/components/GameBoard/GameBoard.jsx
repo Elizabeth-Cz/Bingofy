@@ -81,7 +81,7 @@ const GameBoard = ({ board }) => {
   return (
     <div className="content">
       <div className="buttons">
-        <h3>Bingofy {boardInfo.title}</h3>
+        <h3>{boardInfo.title}</h3>
         <div className={isBingo ? 'tracking-in-expand-fwd bingo' : 'no-bingo'}>
           <button className="close">x</button>
           <h2>BINGO</h2>
@@ -102,7 +102,7 @@ const GameBoard = ({ board }) => {
         {boardInfo.cells.map((cell, index) => (
           <div
             className={`board-cell ${
-              boardInfo.activeCells.includes(index) ? 'active' : ''
+              boardInfo.activeCells.includes(index) ? 'active-cell' : ''
             }`}
             key={index}
             onClick={() => {

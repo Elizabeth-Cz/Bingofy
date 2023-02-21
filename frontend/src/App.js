@@ -10,6 +10,10 @@ import Login from './pages/Login';
 import Play from './pages/Play';
 import Register from './pages/Register';
 import MyAccount from './pages/MyAccount';
+import Home from './pages/Home';
+import Browse from './pages/Browse';
+import Contact from './pages/Contact';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -18,7 +22,10 @@ function App() {
         <div className="container">
           <Header />
           <Routes>
-            <Route path="/" element={<MyBoards />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/myboards" element={<MyBoards />} />
             <Route path="/create" element={<CreateBoard />} />
             <Route path="/play" element={<Play />} />
             <Route path="/play/:id" element={<Game />} />
@@ -26,6 +33,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
       <ToastContainer />

@@ -5,6 +5,8 @@ import BoardItem from '../components/BoardItem/BoardItem';
 import Spinner from '../components/Spinner/Spinner';
 import { getBoards, reset } from '../features/boards/boardSlice';
 
+// FIXME: fix access to my boards
+
 const MyBoards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,6 +48,7 @@ const MyBoards = () => {
       ) : (
         <h3>You have not set any boards</h3>
       )}
+      {/* TODO: add link to create board */}
     </section>
   );
 };

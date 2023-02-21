@@ -1,0 +1,14 @@
+footer {
+  padding: 1.5rem 1rem;
+  margin-top: auto;
+}
+
+footer ul li a:hover {
+  color: #c83596;
+}
+
+footer ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}

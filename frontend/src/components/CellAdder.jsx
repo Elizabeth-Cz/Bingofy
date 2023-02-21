@@ -35,7 +35,7 @@ const CellAdder = ({ boardData, setBoardData }) => {
             ref={inputRef}
           />
           <button className="btn" onClick={addCell}>
-            Add Cell
+            +
           </button>
         </div>
       </div>

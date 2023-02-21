@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createBoard } from '../../features/boards/boardSlice';
 import CellAdder from '../CellAdder';
-import TagAdder from '../TagAdder';
+// import TagAdder from '../TagAdder';
 import './BoardForm.css';
 
 function BoardForm() {
@@ -27,13 +27,13 @@ function BoardForm() {
     });
   };
 
-  const deleteTag = (e, i) => {
-    e.preventDefault();
-    boardData.tags.splice(i, 1);
-    setBoardData({
-      ...boardData,
-    });
-  };
+  // const deleteTag = (e, i) => {
+  //   e.preventDefault();
+  //   boardData.tags.splice(i, 1);
+  //   setBoardData({
+  //     ...boardData,
+  //   });
+  // };
 
   const deleteCell = (e, i) => {
     e.preventDefault();
