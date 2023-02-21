@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Browse from './pages/Browse';
 import Contact from './pages/Contact';
 import Footer from './components/Footer/Footer';
+import BoardForm from './components/BoardForm/BoardForm';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/create" element={<CreateBoard />} />
             <Route path="/play" element={<Play />} />
             <Route path="/play/:id" element={<Game />} />
+            <Route path="/edit/:boardId" element={<BoardForm />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />

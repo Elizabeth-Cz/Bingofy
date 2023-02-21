@@ -29,32 +29,25 @@
   margin: 10px;
 }
 
-.close,
+.delete,
 .edit {
   cursor: pointer;
   border: none;
   background: none;
-}
-
-.board-item .close {
-  position: absolute;
-  top: 3px;
-  left: 3px;
   color: #8c8c8c;
   font-size: 1.2rem;
+  right: 0;
+  position: absolute;
 }
-.board-item .close:hover {
+
+.board-item .delete {
+  top: 20px;
   color: tomato;
 }
 
 .board-item .edit {
-  top: 10px;
-  left: 15px;
-  position: absolute;
-}
-
-.close {
-  position: relative;
+  bottom: 18px;
+  color: seagreen;
 }
 
 /* Media queries */

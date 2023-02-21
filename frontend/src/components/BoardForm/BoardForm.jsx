@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createBoard } from '../../features/boards/boardSlice';
+import { createBoard, updateBoard } from '../../features/boards/boardSlice';
 import CellAdder from '../CellAdder';
 // import TagAdder from '../TagAdder';
 import './BoardForm.css';
@@ -10,6 +10,14 @@ import './BoardForm.css';
 function BoardForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { boardId } = useParams();
+  const [showErrors, setShowErrors] = useState(false);
+
+  //FIXME: fix nested boards[boards] of state
+  const board = useSelector((state) =>
+    state.boards.boards.find((board) => board._id === boardId)
+  );
+
   const [boardData, setBoardData] = useState({
     title: '',
     category: '',
@@ -18,7 +26,12 @@ function BoardForm() {
     activeCells: [],
     private: true,
   });
-  const [showErrors, setShowErrors] = useState(false);
+
+  useEffect(() => {
+    if (board) {
+      setBoardData(board);
+    }
+  }, [board]);
 
   const handleChange = (e) => {
     setBoardData({
@@ -27,48 +40,52 @@ function BoardForm() {
     });
   };
 
-  // const deleteTag = (e, i) => {
-  //   e.preventDefault();
-  //   boardData.tags.splice(i, 1);
-  //   setBoardData({
-  //     ...boardData,
-  //   });
-  // };
-
   const deleteCell = (e, i) => {
     e.preventDefault();
-    boardData.cells.splice(i, 1);
+    // Use the `filter` method to remove the cell at the specified index
     setBoardData({
       ...boardData,
+      cells: boardData.cells.filter((_, index) => index !== i),
     });
   };
 
+  // TODO: update function to handle editing and creating
   const onSubmit = (e) => {
     e.preventDefault();
-    setShowErrors(true);
     if (
       !boardData.title ||
       !boardData.category ||
       boardData.cells.length !== 25
     ) {
+      setShowErrors(true);
       return;
     }
-    dispatch(createBoard(boardData));
-    setBoardData({
-      title: '',
-      category: '',
-      cells: [],
-      tags: [],
-    });
-    toast.success('New board created!');
-    navigate('/');
+    if (boardId) {
+      localStorage.removeItem(`board ${boardId}`);
+      dispatch(updateBoard({ ...boardData, _id: boardId }));
+      toast.success('Board updated!');
+      // navigate('/myboards');
+      return;
+    } else {
+      dispatch(createBoard(boardData));
+      setBoardData({
+        title: '',
+        category: '',
+        cells: [],
+        tags: [],
+      });
+      toast.success('New board created!');
+      navigate('/');
+    }
   };
+
+  //FIXME: show 'edit' and 'update' instead of add when editing board
 
   return (
     <div className="content">
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <h3>Add new Bingofy board</h3>
+          <h3>{boardId ? 'Edit Board' : 'Add New Board'}</h3>
           <label htmlFor="title">Title</label>
           <input
             type="text"
