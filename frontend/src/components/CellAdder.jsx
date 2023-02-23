@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 
-const CellAdder = ({ boardData, setBoardData }) => {
+import { MdAdd } from 'react-icons/md';
+
+const CellAdder = ({ boardData, setBoardData, children }) => {
   const [cell, setCell] = useState('');
   const inputRef = useRef(null);
 
@@ -16,7 +18,6 @@ const CellAdder = ({ boardData, setBoardData }) => {
         cells: [...boardData.cells, cell],
       });
     }
-    // TODO: add focus on input
     setCell('');
     inputRef.current.focus();
   };
@@ -25,7 +26,7 @@ const CellAdder = ({ boardData, setBoardData }) => {
     <>
       <div className="form-group">
         <label htmlFor="cell">Board cells</label>
-        <div className="add-field">
+        <div className="add-input">
           <input
             type="text"
             name="cell"
@@ -34,10 +35,14 @@ const CellAdder = ({ boardData, setBoardData }) => {
             onChange={handleChange}
             ref={inputRef}
           />
-          <button className="btn" onClick={addCell}>
-            +
-          </button>
+          {/* FIXME: have input and button on same line */}
+          {boardData.cells.length < 25 && (
+            <button className="btn btn-reverse add" onClick={addCell}>
+              <MdAdd />
+            </button>
+          )}
         </div>
+        {children}
       </div>
     </>
   );

@@ -20,6 +20,9 @@ function App() {
   return (
     <>
       <Router>
+        <h2 className="small-screen">
+          This app doesn't support screens under 360px wide
+        </h2>
         <div className="container">
           <Header />
           <Routes>

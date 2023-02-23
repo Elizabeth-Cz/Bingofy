@@ -15,6 +15,11 @@ const MyBoards = () => {
   const { boards, isLoading, isError, message } = useSelector(
     (state) => state.boards
   );
+
+  const handleAdd = () => {
+    navigate('/create');
+  };
+
   useEffect(() => {
     if (isError) {
       console.log(message);
@@ -37,10 +42,15 @@ const MyBoards = () => {
 
   return (
     <section className="content">
-      <h1>Welcome {user && user.name}</h1>
-      <h2>Your Bingofy boards</h2>
+      <h1>
+        Your <span className="logo">Bingofy</span> Boards
+      </h1>
+      <button className="btn btn-reverse" onClick={handleAdd}>
+        Add new board +
+      </button>
+      {/* <h3>Add New Board</h3> */}
       {boards && boards.length > 0 ? (
-        <div>
+        <div className="boards-list">
           {boards.map((board) => (
             <BoardItem key={board._id} board={board} />
           ))}
@@ -48,7 +58,6 @@ const MyBoards = () => {
       ) : (
         <h3>You have not set any boards</h3>
       )}
-      {/* TODO: add link to create board */}
     </section>
   );
 };

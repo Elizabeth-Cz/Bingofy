@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt, FaEye } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -13,6 +13,7 @@ function Login() {
   });
 
   const { email, password } = formData;
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,53 +52,60 @@ function Login() {
     dispatch(login(userData));
   };
 
+  // TODO: finish implement show password
+
+  const togglePassword = (e) => {
+    e.preventDefault();
+    setShowPassword((prevState) => !prevState);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
-    <>
-      <section className="heading">
-        <h1>
-          <FaSignInAlt /> Login
-        </h1>
-        <p>Login and start playing</p>
-      </section>
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={password}
-              placeholder="Enter your password"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
-          </div>
-        </form>
+    <div className="content">
+      <form className="form" onSubmit={onSubmit}>
+        <div className="heading">
+          <h1>
+            <FaSignInAlt /> Login
+          </h1>
+          <p>Login and start playing</p>
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary btn-block">
+            Submit
+          </button>
+        </div>
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
-      </section>
-    </>
+      </form>
+    </div>
   );
 }
 

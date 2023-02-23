@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --main-color: #724aa2;
-  --light-color: #9d7dc4;
-  --dark-color: #4a3465;
+  --main-color: #c83596;
+  --secondary-color: #724aa2;
+  --accent-color: #faa222;
 }
-
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* BASE */
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -19,7 +21,6 @@ body {
 
 a {
   text-decoration: none;
-  /* color: var(--main-color); */
   color: inherit;
 }
 
@@ -35,60 +36,207 @@ li {
   line-height: 2.2;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  /* color: var(--dark-color); */
+.small-screen {
+  display: none;
 }
+h1 {
+  margin: 1rem 0;
+}
+
+.error {
+  color: rgb(255, 85, 125);
+  font-size: 14px;
+}
+
+/* LOGO */
+
+.logo {
+  font-family: 'k2d', sans-serif;
+  font-weight: 800;
+  color: #444;
+  display: inline-block;
+}
+
+.logo::first-letter {
+  color: #c83596;
+  font-size: 2rem;
+}
+
+/* WHOLE APP CONTAINER */
 
 .container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
 }
 
-.content {
-  width: 70%;
+/* FORMS */
+
+.form {
+  border-radius: 10px;
+  padding: 3rem;
+  border: 2px solid #c83596;
+  box-shadow: -5px 5px #c83596;
+  max-width: 450px;
   margin: 0 auto;
 }
 
+.form p {
+  text-align: center;
+}
+
+.form a:hover {
+  color: #c83596;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(200, 53, 150, 0.7);
+}
+
+.add-input {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+.control-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+input[type='checkbox'] {
+  width: unset;
+  box-shadow: none;
+  margin: 0;
+}
+
 .heading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 50px;
+  margin-bottom: 2.5rem;
   padding: 0 20px;
 }
 
 .heading p {
   color: var(--main-color);
+  text-align: left;
 }
 
-.btn {
-  padding: 10px 20px;
+/* BOARD FORM */
+
+.create .form {
+  margin: 0;
+  width: 100%;
+}
+.content.create {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cells-list {
+  width: 50%;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.cell {
+  background-color: #e6e6e6;
   border-radius: 5px;
-  background: var(--main-color);
-  color: #fff;
-  border: none;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
   text-align: center;
-  appearance: button;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  padding: 4px;
 }
 
-.btn svg {
-  margin-right: 8px;
+.cell .delete {
+  position: absolute;
+  top: -8px;
+  right: -2px;
+}
+
+/* PAGES */
+
+/* .content {
+  width: 70%;
+  margin: 0 auto;
+} */
+
+/* .content.add-board {
+  display: flex;
+  width: unset;
+  margin: unset;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 14px;
+} */
+
+/* .headline {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+/* .headline h3 {
+  margin: 0 0.5rem 0 auto;
+} */
+
+/* BUTTONS */
+
+.btn {
+  align-items: center;
+  appearance: button;
+  cursor: pointer;
+  display: flex;
+  font-family: 'K2D', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  justify-content: center;
+  padding: 4px 20px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--main-color);
+  border: 2px solid #000;
+  transition: all ease-in 100ms;
+  color: #fff;
+}
+
+.btn-primary:hover,
+.add:hover {
+  transform: scale(105%);
 }
 
 .btn-reverse {
+  padding: 10px;
   border: 2px solid var(--main-color);
   background: #fff;
   color: var(--main-color);
@@ -97,14 +245,28 @@ h3 {
 }
 
 .btn-reverse:hover {
-  transform: translate(-2px, -2px);
+  transform: translate(2px, -2px);
   transform: scale(none);
-  box-shadow: 3px 3px 0px var(--main-color);
+  box-shadow: -3px 3px 0px var(--main-color);
 }
 
 .btn-block {
   width: 100%;
   margin-bottom: 20px;
+  padding: 10px;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+}
+
+.boards-list {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -152,6 +314,9 @@ button {
   .container {
     display: none;
   }
+  .small-screen {
+    display: block;
+  }
 }
 
 /* Media query for screens between 360px and 599px wide */
@@ -162,12 +327,48 @@ button {
   }
   .content {
     width: 90%;
+    margin: 0 auto;
+  }
+  .content.create {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+  }
+
+  h1 {
+    margin: 0;
+  }
+  .logo::first-letter {
+    font-size: 1.5rem;
+  }
+  .headline h3 {
+    font-size: 1rem;
+    margin: 0 1rem 0 0;
+  }
+  .boards-list {
+    margin: 1rem 0;
+  }
+  .form {
+    border: none;
+    box-shadow: none;
+  }
+
+  .cells-list {
+    width: 100%;
+    aspect-ratio: 1/1;
   }
 }
 /* Media query for screens between 600px and 767px wide */
 @media screen and (min-width: 600px) and (max-width: 767px) {
   .container {
-    padding: 0;
+    padding: 0 1rem;
   }
 
   .content {
@@ -190,9 +391,28 @@ button {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
     max-width: 768px;
+    padding: 1rem;
   }
 
   .content {
+    margin: 0 auto;
     width: 80%;
   }
+
+  .cells-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+}
+
+/* Media Queries template */
+/* Media query for screens between 360px and 599px wide */
+@media screen and (min-width: 360px) and (max-width: 599px) {
+}
+/* Media query for screens between 600px and 767px wide */
+@media screen and (min-width: 600px) and (max-width: 767px) {
+}
+/* Media query for screens between 768px and 1024px wide */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 }

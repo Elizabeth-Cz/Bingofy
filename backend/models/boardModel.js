@@ -21,7 +21,6 @@ const boardSchema = mongoose.Schema(
       required: [true, 'Please add a category'],
     },
     activeCells: [],
-    private: { type: Boolean },
   },
   {
     timestamps: true,
