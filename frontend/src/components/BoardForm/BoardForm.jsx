@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createBoard } from '../../features/boards/boardSlice';
 import CellAdder from '../CellAdder';
-// import TagAdder from '../TagAdder';
 import './BoardForm.css';
 
 function BoardForm() {
@@ -26,14 +25,6 @@ function BoardForm() {
       [e.target.name]: e.target.value,
     });
   };
-
-  // const deleteTag = (e, i) => {
-  //   e.preventDefault();
-  //   boardData.tags.splice(i, 1);
-  //   setBoardData({
-  //     ...boardData,
-  //   });
-  // };
 
   const deleteCell = (e, i) => {
     e.preventDefault();
@@ -61,14 +52,17 @@ function BoardForm() {
       tags: [],
     });
     toast.success('New board created!');
-    navigate('/');
+    navigate('/myboards');
   };
 
   return (
-    <div className="content">
-      <form className="form" onSubmit={onSubmit}>
+    <div className="content create">
+      <form onSubmit={onSubmit} className="form">
+        <h2>
+          Add New <span className="logo">Bingofy</span> Board
+        </h2>
+
         <div className="form-group">
-          <h3>Add new Bingofy board</h3>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -81,6 +75,7 @@ function BoardForm() {
             <p className="error">Title is required</p>
           )}
         </div>
+
         <div className="form-group">
           <label htmlFor="category">Category</label>
           <input
@@ -98,43 +93,31 @@ function BoardForm() {
           handleCells={handleChange}
           boardData={boardData}
           setBoardData={setBoardData}
-        />
-        <p className={boardData.cells.length !== 25 ? 'error' : ''}>
-          {boardData.cells.length}/25
-        </p>
-        {showErrors && boardData.cells.length !== 25 && (
-          <p className="error">A Bingofy board needs to have 25 cells</p>
-        )}
-
-        <ul className="cells-list">
-          {boardData.cells.map((cell, i) => (
-            <li key={i} className="cell">
-              {cell}
-              <button className="close" onClick={(e) => deleteCell(e, i)}>
-                x
-              </button>
-            </li>
-          ))}
-        </ul>
-        {/* <TagAdder
-          handleTags={handleChange}
-          boardData={boardData}
-          setBoardData={setBoardData}
-        />
-        <ul className="tags-list">
-          {boardData.tags.map((tag, i) => (
-            <li key={i} className="tag">
-              {tag}
-              <button className="close" onClick={(e) => deleteTag(e, i)}>
-                x
-              </button>
-            </li>
-          ))}
-        </ul> */}
-        <button className="btn btn-block" type="submit">
-          Add Board
-        </button>
+        >
+          {/* TODO: limit cells to 25 */}
+          <p className={boardData.cells.length !== 25 ? 'error' : ''}>
+            {boardData.cells.length}/25
+          </p>
+          {showErrors && !boardData.cells.length < 25 && (
+            <p className="error">PLEASE add 25 cells</p>
+          )}
+        </CellAdder>
+        <div className="form-group">
+          <button className="btn btn-block btn-primary" type="submit">
+            Add Board
+          </button>
+        </div>
       </form>
+      <div className="cells-list">
+        {boardData.cells.map((cell, i) => (
+          <div className="cell">
+            <p>{cell}</p>
+            <button className="delete" onClick={(e) => deleteCell(e, i)}>
+              x
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

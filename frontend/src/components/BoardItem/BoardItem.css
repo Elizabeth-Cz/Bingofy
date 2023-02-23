@@ -1,21 +1,11 @@
 .board-item {
-  margin: 10px 0;
-  padding: 20px;
-  position: relative;
+  padding: 20px 25px;
+  font-size: 14px;
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid #8c8c8c;
-  /* border-radius: 10px; */
-  /* border: 2px solid black; */
+  align-items: flex-end;
   justify-content: space-between;
-  text-align: left;
-}
-
-/* .board-item h2, */
-.board-item p {
-  text-align: left;
-  margin-right: 2rem;
-  margin-left: auto;
+  background-color: #f4f4f4;
+  margin-bottom: 2rem;
 }
 
 .board-item .cells-list {
@@ -29,49 +19,54 @@
   margin: 10px;
 }
 
-.close,
+.delete,
 .edit {
   cursor: pointer;
   border: none;
   background: none;
 }
 
-.board-item .close {
-  position: absolute;
-  top: 3px;
-  left: 3px;
+.play {
+  margin-left: auto;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+  gap: 5px;
+}
+
+.delete,
+.edit {
   color: #8c8c8c;
-  font-size: 1.2rem;
-}
-.board-item .close:hover {
-  color: tomato;
+  font-size: 1rem;
+  transition: all linear 100ms;
 }
 
-.board-item .edit {
-  top: 10px;
-  left: 15px;
-  position: absolute;
-}
-
-.close {
-  position: relative;
+.delete:hover,
+.edit:hover {
+  transform: scale(130%);
 }
 
 /* Media queries */
 
-/* Media query for screens smaller than 768px wide */
-@media screen and (max-width: 767px) {
+/* Media query for screens between 360px and 599px wide */
+@media screen and (min-width: 360px) and (max-width: 599px) {
   .board-item {
     gap: 7px;
     padding: 20px 10px;
+    margin-bottom: 1rem;
   }
   .board-item h2 {
     font-size: 1rem;
     display: inline-block;
   }
-  .board-item p {
-    text-align: right;
-    flex-grow: 1;
-    margin-left: 0;
-  }
+}
+/* Media query for screens between 600px and 767px wide */
+@media screen and (min-width: 600px) and (max-width: 767px) {
+}
+/* Media query for screens between 768px and 1024px wide */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import BingoWin from '../BingoWin/BingoWin';
 import Spinner from '../Spinner/Spinner';
 import './GameBoard.css';
 
@@ -6,8 +7,10 @@ const GameBoard = ({ board }) => {
   const localStorageData = localStorage.getItem('board ' + board._id)
     ? JSON.parse(localStorage.getItem('board ' + board._id))
     : null;
+
   const [boardInfo, setboardInfo] = useState(localStorageData || board);
   const [isBingo, setIsBingo] = useState(false);
+
   const checkBingo = useCallback((activeCells) => {
     let bingo = false;
     const winConditions = [
@@ -33,7 +36,6 @@ const GameBoard = ({ board }) => {
       }
     });
     setIsBingo(bingo);
-    return bingo;
   }, []);
 
   const handleCellClick = (index) => {
@@ -64,57 +66,56 @@ const GameBoard = ({ board }) => {
     localStorage.setItem('board ' + board._id, JSON.stringify(boardInfo));
   }, [boardInfo, board]);
 
-  // TODO: shuffle on first render
-  // useEffect(() => {
-  //   if ((boardInfo.activeCells = [])) shuffleCells();
-  // }, []);
-
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
   }, [saveBoard, checkBingo, boardInfo]);
+
+  // FIXME: will also shuffle when selecting and deselecting cell
+  // useEffect(() => {
+  //   if (boardInfo.activeCells.length === 0) {
+  //     shuffleCells();
+  //   }
+  // }, [boardInfo.activeCells]);
 
   if (!board || !boardInfo) {
     return <Spinner />;
   }
 
   return (
-    <div className="content">
-      <div className="buttons">
-        <h3>{boardInfo.title}</h3>
-        <div className={isBingo ? 'tracking-in-expand-fwd bingo' : 'no-bingo'}>
-          <button className="close">x</button>
-          <h2>BINGO</h2>
+    <>
+      <div className="content">
+        <div className="buttons">
+          <h3>{boardInfo.title}</h3>
+          {boardInfo.activeCells.length === 0 ? (
+            <button className="btn btn-reverse" onClick={shuffleCells}>
+              Shuffle Cells
+            </button>
+          ) : (
+            <button className="btn btn-reverse" onClick={resetCells}>
+              Reset
+            </button>
+          )}
         </div>
-
-        {boardInfo.activeCells.length === 0 ? (
-          <button className="btn btn-reverse btn-s" onClick={shuffleCells}>
-            Shuffle Cells
-          </button>
-        ) : (
-          <button className="btn btn-reverse" onClick={resetCells}>
-            Reset
-          </button>
-        )}
+        <BingoWin isBingo={isBingo} />
+        <div className="board-grid">
+          {boardInfo.cells.map((cell, index) => (
+            <p
+              className={`board-cell ${
+                boardInfo.activeCells.includes(index) ? 'active-cell' : ''
+              }`}
+              key={index}
+              onClick={() => {
+                handleCellClick(index);
+                checkBingo(boardInfo.activeCells);
+              }}
+            >
+              {cell}
+            </p>
+          ))}
+        </div>
       </div>
-
-      <div className="board-grid">
-        {boardInfo.cells.map((cell, index) => (
-          <div
-            className={`board-cell ${
-              boardInfo.activeCells.includes(index) ? 'active-cell' : ''
-            }`}
-            key={index}
-            onClick={() => {
-              handleCellClick(index);
-              checkBingo(boardInfo.activeCells);
-            }}
-          >
-            {cell}
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
