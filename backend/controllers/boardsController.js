@@ -30,7 +30,7 @@ const getBoard = asyncHandler(async (req, res) => {
   }
 
   // Make sure the logged in user matches the board user
-  if (board.user.toString() !== req.user.id) {
+  if (board.isPrivate && board.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not authorized');
   }
@@ -42,7 +42,7 @@ const getBoard = asyncHandler(async (req, res) => {
 // @route   POST /api/boards
 // @access  Private
 const setBoard = asyncHandler(async (req, res) => {
-  const { title, cells, tags, category } = req.body;
+  const { title, cells, tags, category, isPrivate } = req.body;
 
   if (!title || !cells || !category || cells.length !== 25) {
     res.status(400);
@@ -55,7 +55,7 @@ const setBoard = asyncHandler(async (req, res) => {
     cells: cells,
     tags: tags,
     category: category,
-    private: true,
+    isPrivate: isPrivate,
     activeCells: [],
     user: req.user.id,
   });
