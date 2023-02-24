@@ -15,12 +15,13 @@ const boardSchema = mongoose.Schema(
       type: [String],
       required: [true, 'Please add cells content'],
     },
-    isPrivate: { type: Boolean },
+    tags: { type: [String] },
     category: {
       type: String,
       required: [true, 'Please add a category'],
     },
     activeCells: [],
+    isPrivate: { type: Boolean },
   },
   {
     timestamps: true,

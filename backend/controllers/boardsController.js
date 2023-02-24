@@ -12,6 +12,32 @@ const getBoards = asyncHandler(async (req, res) => {
   res.status(200).json(boards);
 });
 
+// @desc    Get board
+// @route   GET /api/boards
+// @access  Private
+const getBoard = asyncHandler(async (req, res) => {
+  const board = await Board.findById(req.params.id);
+
+  if (!board) {
+    res.status(400);
+    throw new Error('Board not found');
+  }
+
+  // Check for user
+  if (!req.user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  // Make sure the logged in user matches the board user
+  if (board.isPrivate && board.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
+  res.status(200).json(board);
+});
+
 // @desc    Set board
 // @route   POST /api/boards
 // @access  Private
@@ -29,6 +55,7 @@ const setBoard = asyncHandler(async (req, res) => {
     cells: cells,
     tags: tags,
     category: category,
+    isPrivate: isPrivate,
     activeCells: [],
     isPrivate: isPrivate,
     user: req.user.id,

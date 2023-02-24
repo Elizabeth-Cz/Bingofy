@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'api/boards/';
+const API_URL = '/api/boards/';
 
 // Create new board
 const createBoard = async (boardData, token) => {
