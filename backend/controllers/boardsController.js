@@ -12,31 +12,11 @@ const getBoards = asyncHandler(async (req, res) => {
   res.status(200).json(boards);
 });
 
-// @desc    Get board
-// @route   GET /api/boards/:id
-// @access  Public
-const getBoard = asyncHandler(async (req, res) => {
-  const board = await Board.findById(req.params.id);
-
-  if (!board) {
-    res.status(400);
-    throw new Error('Board not found');
-  }
-
-  // // Check for user
-  // if (!req.user) {
-  //   res.status(401);
-  //   throw new Error('User not found');
-  // }
-
-  res.status(200).json(board);
-});
-
 // @desc    Set board
 // @route   POST /api/boards
 // @access  Private
 const setBoard = asyncHandler(async (req, res) => {
-  const { title, cells, tags, category } = req.body;
+  const { title, cells, tags, category, isPrivate } = req.body;
 
   if (!title || !cells || !category || cells.length !== 25) {
     res.status(400);
@@ -50,6 +30,7 @@ const setBoard = asyncHandler(async (req, res) => {
     tags: tags,
     category: category,
     activeCells: [],
+    isPrivate: isPrivate,
     user: req.user.id,
   });
 
@@ -117,7 +98,6 @@ const deleteBoard = asyncHandler(async (req, res) => {
 
 module.exports = {
   getBoards,
-  getBoard,
   setBoard,
   updateBoard,
   deleteBoard,

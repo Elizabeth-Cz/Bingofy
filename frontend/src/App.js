@@ -33,7 +33,7 @@ function App() {
             <Route path="/create" element={<CreateBoard />} />
             <Route path="/play" element={<Play />} />
             <Route path="/play/:id" element={<Game />} />
-            <Route path="/edit/:boardId" element={<BoardForm />} />
+            <Route path="/edit/:id" element={<BoardForm />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />

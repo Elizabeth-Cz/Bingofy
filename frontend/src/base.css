@@ -118,17 +118,6 @@ input:focus {
   align-items: flex-start;
   gap: 5px;
 }
-.control-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-input[type='checkbox'] {
-  width: unset;
-  box-shadow: none;
-  margin: 0;
-}
 
 .heading {
   font-size: 1.5rem;
@@ -152,7 +141,6 @@ input[type='checkbox'] {
   display: flex;
   justify-content: space-between;
 }
-
 .cells-list {
   width: 50%;
   margin: 10px;
@@ -178,33 +166,63 @@ input[type='checkbox'] {
   top: -8px;
   right: -2px;
 }
-
-/* PAGES */
-
-/* .content {
-  width: 70%;
-  margin: 0 auto;
+/* 
+.checkbox {
+  display: flex;
+  gap: 7px;
 } */
 
-/* .content.add-board {
-  display: flex;
+/* input[type='checkbox'] {
   width: unset;
-  margin: unset;
-  justify-content: space-between;
-  gap: 1rem;
-  font-size: 14px;
+  box-shadow: none;
+  margin: 0;
 } */
 
-/* .headline {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-} */
+/* trying to style checkbox */
 
-/* .headline h3 {
-  margin: 0 0.5rem 0 auto;
-} */
+input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkbox label {
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.checkbox label:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  left: 0;
+  display: block;
+  height: 20px;
+  width: 20px;
+  /* background-color: #c83596; */
+  border: 1px solid black;
+}
+
+.checkbox label:after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 12px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+input:checked + label:after {
+  opacity: 1;
+}
 
 /* BUTTONS */
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createBoard, updateBoard } from '../../features/boards/boardSlice';
+import { createBoard } from '../../features/boards/boardSlice';
 import CellAdder from '../CellAdder';
 import './BoardForm.css';
 
@@ -21,8 +21,8 @@ function BoardForm() {
     title: '',
     category: '',
     cells: [],
-    tags: [],
     activeCells: [],
+    isPrivate: true,
   });
 
   useEffect(() => {
@@ -32,10 +32,19 @@ function BoardForm() {
   }, [board]);
 
   const handleChange = (e) => {
-    setBoardData({
-      ...boardData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value, type, checked } = e.target;
+
+    if (type === 'checkbox') {
+      setBoardData({
+        ...boardData,
+        [name]: checked,
+      });
+    } else {
+      setBoardData({
+        ...boardData,
+        [name]: value,
+      });
+    }
   };
 
   const deleteCell = (e, i) => {
@@ -58,13 +67,16 @@ function BoardForm() {
       return;
     }
     dispatch(createBoard(boardData));
-    setBoardData({});
+    setBoardData({
+      title: '',
+      cells: [],
+      category: '',
+    });
     toast.success('New board created!');
     navigate('/myboards');
   };
 
   //FIXME: show 'edit' and 'update' instead of add when editing board
-
   return (
     <div className="content create">
       <form onSubmit={onSubmit} className="form">
@@ -112,7 +124,16 @@ function BoardForm() {
             <p className="error">PLEASE add 25 cells</p>
           )}
         </CellAdder>
-        {/* FIXME: fix public/private toggle */}
+        <div className="form-group checkbox">
+          <input
+            type="checkbox"
+            name="isPrivate"
+            id="isPrivate"
+            checked={boardData.isPrivate}
+            onChange={handleChange}
+          />
+          <label htmlFor="isPrivate">Private</label>
+        </div>
         <div className="form-group">
           <button className="btn btn-block btn-primary" type="submit">
             Add Board

@@ -50,6 +50,27 @@ export const getBoards = createAsyncThunk(
   }
 );
 
+// Get sinlge board
+export const getBoard = createAsyncThunk(
+  'boards/getOne',
+  async (id, thunkAPI) => {
+    try {
+      // eliminate infinate loop of "Cannot read properties of null (reading 'token')"
+      // if (thunkAPI.getState().auth.user) {
+      return await boardService.getBoard(id);
+      // }
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Delete board
 export const deleteBoard = createAsyncThunk(
   'boards/delete',

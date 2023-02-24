@@ -1,15 +1,23 @@
 import './BoardItem.css';
 import { useDispatch } from 'react-redux';
 import { deleteBoard } from '../../features/boards/boardSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
+import { BsLockFill } from 'react-icons/bs';
 
 const BoardItem = ({ board }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate('/edit/' + board._id);
+    console.log(board);
+  };
 
   return (
     <div className="board-item">
       <div className="controls">
+        {board.isPrivate ? <BsLockFill /> : null}
         <button
           onClick={() => {
             dispatch(deleteBoard(board._id));
@@ -19,7 +27,7 @@ const BoardItem = ({ board }) => {
         >
           <MdDelete />
         </button>
-        <button className="edit">
+        <button className="edit" onClick={handleEdit}>
           <MdEdit />
         </button>
       </div>

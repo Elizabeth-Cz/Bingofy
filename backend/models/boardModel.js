@@ -15,7 +15,7 @@ const boardSchema = mongoose.Schema(
       type: [String],
       required: [true, 'Please add cells content'],
     },
-    tags: { type: [String] },
+    isPrivate: { type: Boolean },
     category: {
       type: String,
       required: [true, 'Please add a category'],

@@ -5,16 +5,11 @@ const {
   setBoard,
   updateBoard,
   deleteBoard,
-  getBoard,
 } = require('../controllers/boardsController');
 
 const { protect } = require('../middleware/authMiddleware');
 
 router.route('/').get(protect, getBoards).post(protect, setBoard);
-router
-  .route('/:id')
-  .delete(protect, deleteBoard)
-  .put(protect, updateBoard)
-  .get(protect, getBoard);
+router.route('/:id').delete(protect, deleteBoard).put(protect, updateBoard);
 
 module.exports = router;
