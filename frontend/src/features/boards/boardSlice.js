@@ -56,9 +56,10 @@ export const getBoard = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       // eliminate infinate loop of "Cannot read properties of null (reading 'token')"
-      // if (thunkAPI.getState().auth.user) {
-      return await boardService.getBoard(id);
-      // }
+      if (thunkAPI.getState().auth.user) {
+        const token = thunkAPI.getState().auth.user.token;
+        return await boardService.getBoard(id, token);
+      }
     } catch (error) {
       const message =
         (error.response &&
@@ -93,10 +94,10 @@ export const deleteBoard = createAsyncThunk(
 // Update board
 export const updateBoard = createAsyncThunk(
   'boards/update',
-  async (id, boardData, thunkAPI) => {
+  async (boardData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await boardService.updateBoard(id, boardData, token);
+      return await boardService.updateBoard(boardData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -144,6 +145,19 @@ export const boardSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(getBoard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.boards = action.payload;
+      })
+      .addCase(getBoard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(deleteBoard.pending, (state) => {
         state.isLoading = true;
       })
@@ -159,6 +173,9 @@ export const boardSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(updateBoard.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(updateBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -166,6 +183,11 @@ export const boardSlice = createSlice({
           (board) => board._id === action.payload._id
         );
         state.boards[updatedBoardIndex] = action.payload;
+      })
+      .addCase(updateBoard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

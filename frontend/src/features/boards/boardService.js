@@ -28,6 +28,19 @@ const getBoards = async (token) => {
   return response.data;
 };
 
+// Get user boards
+const getBoard = async (boardId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL + boardId, config);
+
+  return response.data;
+};
+
 // Delete user board
 const deleteBoard = async (boardId, token) => {
   const config = {
@@ -57,6 +70,7 @@ const updateBoard = async (boardId, data, token) => {
 const boardService = {
   createBoard,
   getBoards,
+  getBoard,
   deleteBoard,
   updateBoard,
 };

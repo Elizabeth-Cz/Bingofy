@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import BoardItem from '../components/BoardItem/BoardItem';
 import Spinner from '../components/Spinner/Spinner';
-import { getBoards, reset } from '../features/boards/boardSlice';
+import { getBoards } from '../features/boards/boardSlice';
 
 // FIXME: fix access to my boards
 
@@ -30,10 +30,6 @@ const MyBoards = () => {
     }
 
     dispatch(getBoards());
-
-    return () => {
-      dispatch(reset());
-    };
   }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
@@ -52,7 +48,7 @@ const MyBoards = () => {
       {boards && boards.length > 0 ? (
         <div className="boards-list">
           {boards.map((board) => (
-            <BoardItem key={board._id} board={board} />
+            <BoardItem user={user} key={board._id} board={board} />
           ))}
         </div>
       ) : (

@@ -1,17 +1,20 @@
 import './BoardItem.css';
 import { useDispatch } from 'react-redux';
 import { deleteBoard } from '../../features/boards/boardSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { BsLockFill } from 'react-icons/bs';
 
-const BoardItem = ({ board }) => {
+const BoardItem = ({ board, user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleEdit = () => {
     navigate('/edit/' + board._id);
-    console.log(board);
+  };
+
+  const handlePlay = () => {
+    navigate('/play/' + board._id);
   };
 
   return (
@@ -27,17 +30,19 @@ const BoardItem = ({ board }) => {
         >
           <MdDelete />
         </button>
-        <button className="edit" onClick={handleEdit}>
-          <MdEdit />
-        </button>
+        {user && user._id === board.user ? (
+          <button className="edit" onClick={handleEdit}>
+            <MdEdit />
+          </button>
+        ) : null}
       </div>
       <div>
         <h2>{board.title}</h2>
         <p className="category">{board.category}</p>
       </div>
-      <Link to={`/play/${board._id}`} className="play btn btn-reverse">
+      <button className="btn btn-reverse" onClick={handlePlay}>
         Play
-      </Link>
+      </button>
     </div>
   );
 };

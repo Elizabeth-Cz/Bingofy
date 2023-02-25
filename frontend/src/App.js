@@ -31,12 +31,11 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/myboards" element={<MyBoards />} />
             <Route path="/create" element={<CreateBoard />} />
-            <Route path="/play" element={<Play />} />
-            <Route path="/play/:id" element={<Game />} />
-            <Route path="/edit/:id" element={<BoardForm />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
+            <Route path="/play/:id" element={<Game />} />
+            <Route path="/edit/:id" element={<BoardForm />} />
           </Routes>
           <Footer />
         </div>

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import GameBoard from '../components/GameBoard/GameBoard';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBoards, reset } from '../features/boards/boardSlice';
+import { getBoard, reset } from '../features/boards/boardSlice';
 import Spinner from '../components/Spinner/Spinner';
 
 const Game = () => {
@@ -21,27 +21,27 @@ const Game = () => {
   useEffect(() => {
     if (isError) {
       console.log(message);
+      return;
     }
 
     if (!user) {
       navigate('/login');
       return;
     }
-
-    dispatch(getBoards());
+    dispatch(getBoard(id));
 
     return () => {
       dispatch(reset());
     };
-  }, [dispatch, isError, message, navigate, user]);
+  }, [dispatch, isError, message, navigate, user, id]);
 
   useEffect(() => {
-    setBoard(boards.find((b) => b._id === id) || {});
-  }, [boards, id]);
+    setBoard(boards);
+  }, [boards]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
+
+  if (isError) return <div>{message}</div>;
 
   if (board && Object.keys(board).length > 0)
     return <GameBoard board={board} />;

@@ -55,7 +55,6 @@ const setBoard = asyncHandler(async (req, res) => {
     cells: cells,
     tags: tags,
     category: category,
-    isPrivate: isPrivate,
     activeCells: [],
     isPrivate: isPrivate,
     user: req.user.id,
@@ -126,6 +125,7 @@ const deleteBoard = asyncHandler(async (req, res) => {
 module.exports = {
   getBoards,
   setBoard,
+  getBoard,
   updateBoard,
   deleteBoard,
 };

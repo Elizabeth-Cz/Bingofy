@@ -1,35 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createBoard } from '../../features/boards/boardSlice';
-import CellAdder from '../CellAdder';
+import { createBoard, updateBoard } from '../../features/boards/boardSlice';
+import { MdAdd } from 'react-icons/md';
 import './BoardForm.css';
+import Spinner from '../Spinner/Spinner';
 
 function BoardForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { boardId } = useParams();
+
+  // if edit get board id from params
+  const { id } = useParams();
+
+  // get boards state from redux
+  const { boards, isLoading } = useSelector((state) => state.boards);
+  console.log(boards);
+
+  const board = boards.find((b) => b._id === id);
+  console.log(board);
+
+  // handle errors state
   const [showErrors, setShowErrors] = useState(false);
+  // access input cell for refocus
+  const cellInputRef = useRef(null);
+  // set each cell in cells array
+  const [cell, setCell] = useState('');
 
-  //FIXME: fix nested boards[boards] of state
-  const board = useSelector((state) =>
-    state.boards.boards.find((board) => board._id === boardId)
-  );
-
-  const [boardData, setBoardData] = useState({
-    title: '',
-    category: '',
-    cells: [],
-    activeCells: [],
-    isPrivate: true,
-  });
-
-  useEffect(() => {
-    if (board) {
-      setBoardData(board);
+  // set boardData's value to empty inputs
+  const [boardData, setBoardData] = useState(
+    board || {
+      title: '',
+      cells: [],
+      isPrivate: true,
+      category: '',
     }
-  }, [board]);
+  );
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -55,6 +62,22 @@ function BoardForm() {
     });
   };
 
+  const handleCellAdd = (e) => {
+    setCell(e.target.value);
+  };
+
+  const addCell = (event) => {
+    event.preventDefault();
+    if (cell !== '') {
+      setBoardData({
+        ...boardData,
+        cells: [...boardData.cells, cell],
+      });
+    }
+    setCell('');
+    cellInputRef.current.focus();
+  };
+
   // TODO: update function to handle editing and creating
   const onSubmit = (e) => {
     e.preventDefault();
@@ -64,6 +87,10 @@ function BoardForm() {
       boardData.cells.length !== 25
     ) {
       setShowErrors(true);
+      return;
+    }
+    if (id) {
+      dispatch(updateBoard(id, { boardData: boardData }));
       return;
     }
     dispatch(createBoard(boardData));
@@ -76,16 +103,16 @@ function BoardForm() {
     navigate('/myboards');
   };
 
-  //FIXME: show 'edit' and 'update' instead of add when editing board
+  if (isLoading) return <Spinner />;
+
   return (
     <div className="content create">
       <form onSubmit={onSubmit} className="form">
         <h2>
-          Add New <span className="logo">Bingofy</span> Board
+          {id ? 'Edit Your ' : 'Add New '}
+          <span className="logo">Bingofy</span> Board
         </h2>
-
         <div className="form-group">
-          <h3>Add new Bingofy board</h3>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -112,18 +139,25 @@ function BoardForm() {
             <p className="error">Category is required</p>
           )}
         </div>
-        <CellAdder
-          handleCells={handleChange}
-          boardData={boardData}
-          setBoardData={setBoardData}
-        >
-          <p className={boardData.cells.length !== 25 ? 'error' : ''}>
-            {boardData.cells.length}/25
-          </p>
-          {showErrors && !boardData.cells.length < 25 && (
-            <p className="error">PLEASE add 25 cells</p>
-          )}
-        </CellAdder>
+        <div className="form-group">
+          <label htmlFor="cell">Cells</label>
+          <div className="add-input">
+            <input
+              type="text"
+              name="cell"
+              id="cell"
+              value={cell}
+              ref={cellInputRef}
+              onChange={handleCellAdd}
+            />
+            {boardData.cells.length < 25 && (
+              <button className="btn btn-reverse" onClick={addCell}>
+                <MdAdd />
+              </button>
+            )}
+            <h6>{boardData.cells.length}/25</h6>
+          </div>
+        </div>
         <div className="form-group checkbox">
           <input
             type="checkbox"
@@ -136,13 +170,13 @@ function BoardForm() {
         </div>
         <div className="form-group">
           <button className="btn btn-block btn-primary" type="submit">
-            Add Board
+            {id ? 'Update' : 'Add'} Board
           </button>
         </div>
       </form>
       <div className="cells-list">
         {boardData.cells.map((cell, i) => (
-          <div className="cell">
+          <div className="cell" key={i}>
             <p>{cell}</p>
             <button className="delete" onClick={(e) => deleteCell(e, i)}>
               x

@@ -71,13 +71,6 @@ const GameBoard = ({ board }) => {
     saveBoard();
   }, [saveBoard, checkBingo, boardInfo]);
 
-  // FIXME: will also shuffle when selecting and deselecting cell
-  // useEffect(() => {
-  //   if (boardInfo.activeCells.length === 0) {
-  //     shuffleCells();
-  //   }
-  // }, [boardInfo.activeCells]);
-
   if (!board || !boardInfo) {
     return <Spinner />;
   }
