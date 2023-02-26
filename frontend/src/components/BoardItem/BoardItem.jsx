@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { BsLockFill } from 'react-icons/bs';
 
-const BoardItem = ({ board, user }) => {
+const BoardItem = ({ board }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,11 +30,10 @@ const BoardItem = ({ board, user }) => {
         >
           <MdDelete />
         </button>
-        {user && user._id === board.user ? (
-          <button className="edit" onClick={handleEdit}>
-            <MdEdit />
-          </button>
-        ) : null}
+        {/* maybe dispatch getboard or something */}
+        <button className="edit" onClick={handleEdit}>
+          <MdEdit />
+        </button>
       </div>
       <div>
         <h2>{board.title}</h2>

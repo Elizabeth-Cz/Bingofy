@@ -1,42 +1,34 @@
 import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createBoard, updateBoard } from '../../features/boards/boardSlice';
 import { MdAdd } from 'react-icons/md';
 import './BoardForm.css';
-import Spinner from '../Spinner/Spinner';
 
-function BoardForm() {
+function BoardForm({ data }) {
+  const { id } = useParams();
+  const board = data.find((b) => b._id === id);
+  console.log('boardForm', data);
+  console.log('boardForm', board);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const { isLoading } = useSelector((state) => state.boards);
 
-  // if edit get board id from params
-  const { id } = useParams();
-
-  // get boards state from redux
-  const { boards, isLoading } = useSelector((state) => state.boards);
-  console.log(boards);
-
-  const board = boards.find((b) => b._id === id);
-  console.log(board);
-
-  // handle errors state
   const [showErrors, setShowErrors] = useState(false);
-  // access input cell for refocus
-  const cellInputRef = useRef(null);
-  // set each cell in cells array
-  const [cell, setCell] = useState('');
-
-  // set boardData's value to empty inputs
   const [boardData, setBoardData] = useState(
     board || {
       title: '',
       cells: [],
-      isPrivate: true,
       category: '',
+      isPrivate: true,
     }
   );
+
+  // access input cell for refocus
+  const cellInputRef = useRef(null);
+  // set each cell in cells array
+  const [cell, setCell] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -89,8 +81,11 @@ function BoardForm() {
       setShowErrors(true);
       return;
     }
-    if (id) {
-      dispatch(updateBoard(id, { boardData: boardData }));
+    if (board) {
+      dispatch(updateBoard(boardData));
+      localStorage.removeItem('board ' + boardData._id);
+      toast.success('Board updated');
+      navigate('/myboards');
       return;
     }
     dispatch(createBoard(boardData));
@@ -103,7 +98,7 @@ function BoardForm() {
     navigate('/myboards');
   };
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
   return (
     <div className="content create">

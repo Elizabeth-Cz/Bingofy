@@ -7,14 +7,12 @@ import CreateBoard from './pages/CreateBoard';
 import MyBoards from './pages/MyBoards';
 import Game from './pages/Game';
 import Login from './pages/Login';
-import Play from './pages/Play';
 import Register from './pages/Register';
 import MyAccount from './pages/MyAccount';
 import Home from './pages/Home';
 import Browse from './pages/Browse';
 import Contact from './pages/Contact';
 import Footer from './components/Footer/Footer';
-import BoardForm from './components/BoardForm/BoardForm';
 
 function App() {
   return (
@@ -35,7 +33,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/play/:id" element={<Game />} />
-            <Route path="/edit/:id" element={<BoardForm />} />
+            <Route path="/edit/:id" element={<CreateBoard />} />
           </Routes>
           <Footer />
         </div>

@@ -70,7 +70,9 @@ const Header = () => {
                 My Boards
               </NavLink>
             </li>
+            <li></li>
             <li>
+              <h6>Hi, {user.name}</h6>
               <Link className="btn btn-primary" onClick={onLogout}>
                 Logout
               </Link>

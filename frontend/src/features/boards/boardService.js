@@ -55,14 +55,14 @@ const deleteBoard = async (boardId, token) => {
 };
 
 // Update board
-const updateBoard = async (boardId, data, token) => {
+const updateBoard = async (data, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = await axios.put(API_URL + boardId, data, config);
+  const response = await axios.put(API_URL + data._id, data, config);
 
   return response.data;
 };
