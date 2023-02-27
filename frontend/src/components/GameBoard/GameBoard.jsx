@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import BingoWin from '../BingoWin/BingoWin';
 import Spinner from '../Spinner/Spinner';
 import './GameBoard.css';
+import { FiCopy } from 'react-icons/fi';
 
 const GameBoard = ({ board }) => {
   const localStorageData = localStorage.getItem('board ' + board._id)
@@ -10,6 +11,7 @@ const GameBoard = ({ board }) => {
 
   const [boardInfo, setboardInfo] = useState(localStorageData || board);
   const [isBingo, setIsBingo] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const checkBingo = useCallback((activeCells) => {
     let bingo = false;
@@ -66,6 +68,16 @@ const GameBoard = ({ board }) => {
     localStorage.setItem('board ' + board._id, JSON.stringify(boardInfo));
   }, [boardInfo, board]);
 
+  const copyURL = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    setCopied(true);
+  };
+
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
@@ -79,7 +91,16 @@ const GameBoard = ({ board }) => {
     <>
       <div className="content">
         <div className="buttons">
+          <button
+            title="Copy URL and share with friends"
+            onClick={copyURL}
+            className="btn btn-primary copy"
+          >
+            <FiCopy size={'1.3rem'} />
+            Share
+          </button>
           <h3>{boardInfo.title}</h3>
+          {isBingo ? <h3>YOU WON!</h3> : null}
           {boardInfo.activeCells.length === 0 ? (
             <button className="btn btn-reverse" onClick={shuffleCells}>
               Shuffle Cells

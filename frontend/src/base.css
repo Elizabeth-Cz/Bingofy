@@ -138,6 +138,27 @@ input:focus {
   text-align: left;
 }
 
+/* HOME PAGE */
+
+.landing-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 60px;
+  gap: 2rem;
+}
+
+.landing-page .info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bingofy-logo {
+  display: block;
+  width: 200px;
+}
+
 /* BOARD FORM */
 
 .create .form {
@@ -292,6 +313,10 @@ input:checked + label:after {
   border: none;
   padding: 0;
   position: absolute;
+}
+
+.btn.copy {
+  gap: 0.5rem;
 }
 
 .boards-list {
