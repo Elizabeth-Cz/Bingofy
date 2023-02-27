@@ -17,16 +17,16 @@ const BingoWin = () => {
     <div className="bingo">
       <div className="confetti-container">
         <Confetti
-          width={window.innerWidth}
+          width={window.innerWidth / 1.01}
           height={window.innerHeight}
           recycle={false}
           numberOfPieces={700}
           gravity={0.2}
-          confettiSource={{
-            x: window.innerWidth / 2,
-            y: 0,
-          }}
-          dragFriction={0.5}
+          burst={true}
+          // confettiSource={{
+          //   x: window.innerWidth / 2,
+          //   y: window.innerHeight / 2,
+          // }}
         />
       </div>
       {showBingo && (
