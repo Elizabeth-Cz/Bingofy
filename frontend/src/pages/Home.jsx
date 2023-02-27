@@ -1,5 +1,4 @@
 const Home = () => {
-  const Logo = '../assets/bingofy-logo.svg';
   return (
     <section className="landing-page">
       <div className="info">

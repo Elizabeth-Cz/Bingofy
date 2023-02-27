@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
-const { errorHandler } = require('./middleware/errorMiddleware.js');
-const connectDB = require('./config/db.js');
+const { errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 
 connectDB();

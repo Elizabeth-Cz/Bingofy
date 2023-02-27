@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = '/api/boards/';
+const API_URL = `${
+  process.env.NODE_ENV === 'production'
+    ? process.env.API
+    : 'http://localhost:5000'
+}/api/boards`;
 
 // Create new board
 const createBoard = async (boardData, token) => {
