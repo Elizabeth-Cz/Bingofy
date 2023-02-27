@@ -10,10 +10,12 @@ const Browse = () => {
   useEffect(() => {
     dispatch(getPublicBoards());
   }, []);
-  console.log(boards);
   return (
     <div className="content">
-      {boards.length > 0 && boards.map((board) => <BoardItem board={board} />)}
+      {boards.length > 0 &&
+        boards.map((board) => (
+          <BoardItem key={board._id} board={board} user={user} />
+        ))}
     </div>
   );
 };
