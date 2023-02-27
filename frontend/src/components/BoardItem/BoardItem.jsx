@@ -4,7 +4,6 @@ import { deleteBoard } from '../../features/boards/boardSlice';
 import { useNavigate } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { BsLockFill } from 'react-icons/bs';
-import { toast } from 'react-toastify';
 
 const BoardItem = ({ board }) => {
   const { user } = useSelector((state) => state.auth);

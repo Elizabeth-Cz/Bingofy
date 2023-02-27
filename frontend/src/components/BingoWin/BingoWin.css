@@ -24,9 +24,6 @@
   animation: swirl-in-fwd 0.7s linear both;
 }
 
-.confetti-container {
-}
-
 .message-title {
   display: inline-block;
   font-size: 4rem;

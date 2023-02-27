@@ -1,9 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import BingoWin from '../BingoWin/BingoWin';
 import Spinner from '../Spinner/Spinner';
-import { toast } from 'react-toastify';
-import Confetti from 'react-confetti';
-
 import './GameBoard.css';
 
 const GameBoard = ({ board }) => {
