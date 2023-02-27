@@ -35,7 +35,7 @@ const BoardItem = ({ board }) => {
           <MdEdit />
         </button>
       </div>
-      <div>
+      <div className="info">
         <h2>{board.title}</h2>
         <p className="category">{board.category}</p>
       </div>

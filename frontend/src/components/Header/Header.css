@@ -3,10 +3,10 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 1.5rem 0;
+  align-items: center;
   border-bottom: 1px solid #ddd;
   margin-bottom: 1.5rem;
+  height: 80px;
 }
 
 .hamburger-icon {
@@ -15,9 +15,8 @@
 
 .navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 1.3rem;
+  align-items: flex-end;
 }
 
 .navbar-link {
@@ -107,8 +106,10 @@
   .navbar-link {
     color: #fff;
   }
+  .navbar-link:hover {
+    color: unset;
+  }
   .header .logo {
-    /* display: none; */
     position: absolute;
     padding: 1rem;
     top: 0;

@@ -8,6 +8,10 @@
   margin-bottom: 2rem;
 }
 
+.board-item .info {
+  flex-grow: 1;
+}
+
 .board-item .cells-list {
   max-height: 150px;
   overflow: auto;

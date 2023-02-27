@@ -27,7 +27,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h2 className="logo">Bingofy</h2>
+      <Link to="/">
+        <h2 className="logo">Bingofy</h2>
+      </Link>
       <button className="hamburger-icon" onClick={toggleNavbar}>
         <AiOutlineMenu />
       </button>
@@ -70,12 +72,11 @@ const Header = () => {
                 My Boards
               </NavLink>
             </li>
-            <li></li>
             <li>
               <h6>Hi, {user.name}</h6>
-              <Link className="btn btn-primary" onClick={onLogout}>
+              <button className="btn-primary btn" onClick={onLogout}>
                 Logout
-              </Link>
+              </button>
             </li>
           </>
         ) : (

@@ -71,7 +71,11 @@ h1 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+}
+
+.content {
+  width: 600px;
+  margin: 0 auto;
 }
 
 /* FORMS */
@@ -138,11 +142,12 @@ input:focus {
   width: 100%;
 }
 .content.create {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .cells-list {
-  width: 50%;
+  /* width: 50%; */
   margin: 10px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -232,7 +237,6 @@ input:checked + label:after {
   cursor: pointer;
   display: flex;
   font-family: 'K2D', sans-serif;
-  font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -379,6 +383,7 @@ button {
   }
 
   .cells-list {
+    font-size: 11px;
     width: 100%;
     aspect-ratio: 1/1;
   }
@@ -416,11 +421,15 @@ button {
     margin: 0 auto;
     width: 80%;
   }
-
+  .create {
+    width: 100%;
+  }
   .cells-list {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 5px; */
+    font-size: 12px;
+    width: unset;
   }
 }
 
