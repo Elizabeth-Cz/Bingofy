@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import BingoWin from '../BingoWin/BingoWin';
 import Spinner from '../Spinner/Spinner';
+import { toast } from 'react-toastify';
+import Confetti from 'react-confetti';
+
 import './GameBoard.css';
 
 const GameBoard = ({ board }) => {
@@ -69,7 +72,7 @@ const GameBoard = ({ board }) => {
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
-  }, [saveBoard, checkBingo, boardInfo]);
+  }, [boardInfo.activeCells, boardInfo.cells, checkBingo, saveBoard]);
 
   if (!board || !boardInfo) {
     return <Spinner />;
@@ -90,7 +93,7 @@ const GameBoard = ({ board }) => {
             </button>
           )}
         </div>
-        <BingoWin isBingo={isBingo} />
+        {isBingo ? <BingoWin /> : null}
         <div className="board-grid">
           {boardInfo.cells.map((cell, index) => (
             <p

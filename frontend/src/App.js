@@ -38,7 +38,7 @@ function App() {
           <Footer />
         </div>
       </Router>
-      <ToastContainer />
+      <ToastContainer limit={1} />
     </>
   );
 }

@@ -48,7 +48,7 @@ const MyBoards = () => {
       {boards && boards.length > 0 ? (
         <div className="boards-list">
           {boards.map((board) => (
-            <BoardItem key={board._id} board={board} />
+            <BoardItem key={board._id} board={board} user={user} />
           ))}
         </div>
       ) : (

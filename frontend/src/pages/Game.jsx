@@ -4,6 +4,7 @@ import GameBoard from '../components/GameBoard/GameBoard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBoard, reset } from '../features/boards/boardSlice';
 import Spinner from '../components/Spinner/Spinner';
+import { toast } from 'react-toastify';
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Game = () => {
       navigate('/login');
       return;
     }
+
     dispatch(getBoard(id));
 
     return () => {

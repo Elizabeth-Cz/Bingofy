@@ -16,7 +16,7 @@
 .navbar {
   display: flex;
   gap: 1.3rem;
-  align-items: flex-end;
+  /* align-items: flex-end; */
 }
 
 .navbar-link {

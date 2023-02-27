@@ -4,6 +4,9 @@
   --main-color: #c83596;
   --secondary-color: #724aa2;
   --accent-color: #faa222;
+
+  --main-font: 'Poppins', sans-serif;
+  --secondary-font: 'K2D', sans-serif;
 }
 /* RESET */
 * {
@@ -241,7 +244,8 @@ input:checked + label:after {
   text-transform: uppercase;
   letter-spacing: 1px;
   justify-content: center;
-  padding: 4px 20px;
+  /* padding: 4px 20px; */
+  padding: 10px;
   text-align: center;
 }
 
@@ -258,7 +262,6 @@ input:checked + label:after {
 }
 
 .btn-reverse {
-  padding: 10px;
   border: 2px solid var(--main-color);
   background: #fff;
   color: var(--main-color);
@@ -276,6 +279,12 @@ input:checked + label:after {
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;
+}
+
+.btn-disabled {
+  border: 2px solid #444;
+  color: #444;
+  cursor: unset;
 }
 
 .btn-close {
