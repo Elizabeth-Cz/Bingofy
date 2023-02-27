@@ -72,6 +72,24 @@ export const getBoard = createAsyncThunk(
   }
 );
 
+// Get public boards
+export const getPublicBoards = createAsyncThunk(
+  'boards/getPublic',
+  async (_, thunkAPI) => {
+    try {
+      return await boardService.getPublicBoards();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Delete board
 export const deleteBoard = createAsyncThunk(
   'boards/delete',
@@ -154,6 +172,19 @@ export const boardSlice = createSlice({
         state.boards = action.payload;
       })
       .addCase(getBoard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getPublicBoards.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPublicBoards.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.boards = action.payload;
+      })
+      .addCase(getPublicBoards.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
