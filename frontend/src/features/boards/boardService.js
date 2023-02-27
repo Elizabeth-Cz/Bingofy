@@ -29,6 +29,13 @@ const getBoards = async (token) => {
 };
 
 // Get user boards
+const getPublicBoards = async () => {
+  const response = await axios.get(API_URL + '/public');
+
+  return response.data;
+};
+
+// Get user boards
 const getBoard = async (boardId, token) => {
   const config = {
     headers: {
@@ -69,6 +76,7 @@ const updateBoard = async (data, token) => {
 
 const boardService = {
   createBoard,
+  getPublicBoards,
   getBoards,
   getBoard,
   deleteBoard,

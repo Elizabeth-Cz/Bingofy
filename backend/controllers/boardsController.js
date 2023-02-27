@@ -12,6 +12,12 @@ const getBoards = asyncHandler(async (req, res) => {
   res.status(200).json(boards);
 });
 
+const getPublicBoards = asyncHandler(async (req, res) => {
+  const boards = await Board.find({ isPrivate: false });
+
+  res.status(200).json(boards);
+});
+
 // @desc    Get board
 // @route   GET /api/boards
 // @access  Private
@@ -124,6 +130,7 @@ const deleteBoard = asyncHandler(async (req, res) => {
 
 module.exports = {
   getBoards,
+  getPublicBoards,
   setBoard,
   getBoard,
   updateBoard,
