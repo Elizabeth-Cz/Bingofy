@@ -4,7 +4,7 @@ const API_URL = `${
   process.env.NODE_ENV === 'production'
     ? process.env.API
     : 'http://localhost:5000'
-}/api/users`;
+}/api/users/`;
 // Register user
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData);

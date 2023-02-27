@@ -4,7 +4,7 @@ const API_URL = `${
   process.env.NODE_ENV === 'production'
     ? process.env.API
     : 'http://localhost:5000'
-}/api/boards`;
+}/api/boards/`;
 
 // Create new board
 const createBoard = async (boardData, token) => {
