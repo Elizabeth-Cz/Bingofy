@@ -141,9 +141,8 @@ input:focus {
 /* HOME PAGE */
 
 .landing-page {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin: 30px 60px;
   gap: 2rem;
 }
@@ -151,12 +150,36 @@ input:focus {
 .landing-page .info {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.info p {
+  line-height: 2;
 }
 
 .bingofy-logo {
   display: block;
-  width: 200px;
+  /* width: 200px; */
+  width: 100%;
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.contact-card {
+  padding: 1rem;
+  border: 2px solid #c83596;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: -2px 2px #c83596;
+  border-radius: 10px;
+  border: 2px solid #c83596;
+  box-shadow: -5px 5px #c83596;
 }
 
 /* BOARD FORM */
@@ -253,7 +276,7 @@ input:checked + label:after {
   opacity: 1;
 }
 
-/* BUTTONS */
+/* buttons */
 
 .btn {
   align-items: center;
@@ -421,6 +444,22 @@ button {
     width: 100%;
     aspect-ratio: 1/1;
   }
+  .landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .btn:hover {
+    transform: unset;
+    box-shadow: unset;
+  }
+
+  .btn:active {
+    background-color: #c83596;
+    color: #fff;
+    /* border-color: #fff; */
+  }
 }
 /* Media query for screens between 600px and 767px wide */
 @media screen and (min-width: 600px) and (max-width: 767px) {
@@ -443,6 +482,17 @@ button {
   h3 {
     margin: 5px 0;
   }
+
+  .landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bingofy-logo {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 /* Media query for screens between 768px and 1024px wide */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -464,6 +514,22 @@ button {
     gap: 5px; */
     font-size: 12px;
     width: unset;
+  }
+
+  .landing-page {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .landing-page .info {
+    /* gap: unset; */
+  }
+
+  .bingofy-logo {
+    /* width: 50%; */
+    /* margin: 0 auto; */
   }
 }
 

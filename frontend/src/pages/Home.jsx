@@ -1,4 +1,8 @@
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 const Home = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <section className="landing-page">
       <div className="info">
@@ -12,7 +16,15 @@ const Home = () => {
           you're planning a holiday party, family reunion, or just a fun night
           in with friends, Bingofy has got you covered.
         </p>
-        <button className="btn btn-primary">Join Now</button>
+        {!user ? (
+          <Link className="btn btn-primary" to="/register">
+            Join Now
+          </Link>
+        ) : (
+          <Link className="btn btn-primary" to="/create">
+            Start Bingofying
+          </Link>
+        )}
       </div>
       <div>
         <img

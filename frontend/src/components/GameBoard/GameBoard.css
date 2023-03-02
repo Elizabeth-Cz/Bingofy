@@ -53,6 +53,15 @@
     width: 100%;
     padding: 2px;
   }
+  .buttons {
+    /* font-size: 13px; */
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .buttons h3 {
+    font-size: 14px;
+  }
 }
 
 /* Media query for screens between 470px and 599px wide */

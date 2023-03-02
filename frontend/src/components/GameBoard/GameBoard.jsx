@@ -3,6 +3,7 @@ import BingoWin from '../BingoWin/BingoWin';
 import Spinner from '../Spinner/Spinner';
 import './GameBoard.css';
 import { FiCopy } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const GameBoard = ({ board }) => {
   const localStorageData = localStorage.getItem('board ' + board._id)
@@ -76,6 +77,7 @@ const GameBoard = ({ board }) => {
     document.execCommand('copy');
     document.body.removeChild(el);
     setCopied(true);
+    toast.success('URL copied to clipboard');
   };
 
   useEffect(() => {
@@ -103,7 +105,7 @@ const GameBoard = ({ board }) => {
           {isBingo ? <h3>YOU WON!</h3> : null}
           {boardInfo.activeCells.length === 0 ? (
             <button className="btn btn-reverse" onClick={shuffleCells}>
-              Shuffle Cells
+              Shuffle
             </button>
           ) : (
             <button className="btn btn-reverse" onClick={resetCells}>

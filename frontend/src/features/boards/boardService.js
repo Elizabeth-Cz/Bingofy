@@ -30,7 +30,7 @@ const getBoards = async (token) => {
 
 // Get user boards
 const getPublicBoards = async () => {
-  const response = await axios.get(API_URL + '/public');
+  const response = await axios.get(API_URL + 'public');
 
   return response.data;
 };
