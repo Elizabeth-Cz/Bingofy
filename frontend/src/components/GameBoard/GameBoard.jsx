@@ -81,15 +81,6 @@ const GameBoard = ({ board }) => {
   };
 
   useEffect(() => {
-    if (
-      localStorageData &&
-      JSON.stringify(localStorageData) !== JSON.stringify(board)
-    ) {
-      setboardInfo(localStorageData);
-    } else {
-      setboardInfo(board);
-    }
-
     checkBingo(boardInfo.activeCells);
     saveBoard();
   }, [
