@@ -81,9 +81,25 @@ const GameBoard = ({ board }) => {
   };
 
   useEffect(() => {
+    if (
+      localStorageData &&
+      JSON.stringify(localStorageData) !== JSON.stringify(board)
+    ) {
+      setboardInfo(localStorageData);
+    } else {
+      setboardInfo(board);
+    }
+
     checkBingo(boardInfo.activeCells);
     saveBoard();
-  }, [boardInfo.activeCells, boardInfo.cells, checkBingo, saveBoard]);
+  }, [
+    boardInfo.activeCells,
+    boardInfo.cells,
+    checkBingo,
+    saveBoard,
+    board,
+    localStorageData,
+  ]);
 
   if (!board || !boardInfo) {
     return <Spinner />;
