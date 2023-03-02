@@ -41,7 +41,7 @@ const Game = () => {
     setBoard(boards);
   }, [boards]);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || board === {}) return <Spinner />;
 
   if (isError) return <div>{message}</div>;
 
