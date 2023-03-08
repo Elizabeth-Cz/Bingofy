@@ -17,8 +17,6 @@ const Game = () => {
 
   const [board, setBoard] = useState({});
 
-  const localStorageData = localStorage.getItem('board ' + board._id);
-
   const { id } = useParams();
 
   useEffect(() => {

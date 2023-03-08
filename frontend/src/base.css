@@ -168,7 +168,7 @@ input:focus {
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  margin: 2rem 0;
   gap: 20px;
 }
 
@@ -183,6 +183,11 @@ input:focus {
   border-radius: 10px;
   border: 2px solid #c83596;
   box-shadow: -5px 5px #c83596;
+  transition: transform ease-in-out 100ms;
+}
+
+.contact-card:hover {
+  transform: scale(105%);
 }
 
 /* BOARD FORM */

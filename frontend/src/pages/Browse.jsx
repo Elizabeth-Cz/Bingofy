@@ -18,12 +18,15 @@ const Browse = () => {
     dispatch(getPublicBoards());
   }, []);
 
-  const filteredBoards = boards.filter((board) => {
-    return board.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  const filteredBoards = Array.isArray(boards)
+    ? boards.filter((board) => {
+        return board.title.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+    : [];
 
   if (isLoading) return <Spinner />;
 
+  // TODO: improve search page by category
   return (
     <div className="content">
       <div className="form-group">
