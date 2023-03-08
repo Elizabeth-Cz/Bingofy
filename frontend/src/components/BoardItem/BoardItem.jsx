@@ -4,7 +4,6 @@ import { deleteBoard } from '../../features/boards/boardSlice';
 import { useNavigate } from 'react-router-dom';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { BsLockFill } from 'react-icons/bs';
-import { useEffect } from 'react';
 
 const BoardItem = ({ board }) => {
   const { user } = useSelector((state) => state.auth);
@@ -18,7 +17,7 @@ const BoardItem = ({ board }) => {
   const handlePlay = () => {
     navigate('/play/' + board._id);
   };
-
+  // TODO: add creating user to item
   return (
     <div className="board-item">
       <div className="controls">

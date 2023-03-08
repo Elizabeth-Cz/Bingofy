@@ -10,8 +10,9 @@ const GameBoard = ({ board }) => {
     ? JSON.parse(localStorage.getItem('board ' + board._id))
     : null;
 
-  //FIXME: handle update by other user and reset localstorage if board has been updated
-  // maybe move local storage handler to Game component
+  //FIXME: storage data:
+  // if activeCells === [] get boardInfo from board prop
+  // if activeCells !== [] and there is a game is progress use the existing boardInfo
   const [boardInfo, setboardInfo] = useState(localStorageData || board);
   const [isBingo, setIsBingo] = useState(false);
 
@@ -83,7 +84,7 @@ const GameBoard = ({ board }) => {
     setCopied(true);
     toast.success('URL copied to clipboard');
   };
-  //FIXME: in production the board only shows after refresh
+
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
