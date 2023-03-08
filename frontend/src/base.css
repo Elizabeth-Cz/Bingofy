@@ -145,6 +145,8 @@ input:focus {
   grid-template-columns: repeat(2, 1fr);
   margin: 30px 60px;
   gap: 2rem;
+  align-items: center;
+  justify-items: center;
 }
 
 .landing-page .info {
@@ -160,8 +162,7 @@ input:focus {
 
 .bingofy-logo {
   display: block;
-  /* width: 200px; */
-  width: 100%;
+  width: 80%;
 }
 
 .contact-cards {
@@ -218,18 +219,6 @@ input:focus {
   top: -8px;
   right: -2px;
 }
-/* 
-.checkbox {
-  display: flex;
-  gap: 7px;
-} */
-
-/* input[type='checkbox'] {
-  width: unset;
-  box-shadow: none;
-  margin: 0;
-} */
-
 /* trying to style checkbox */
 
 input[type='checkbox'] {
@@ -497,7 +486,6 @@ button {
 /* Media query for screens between 768px and 1024px wide */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
-    max-width: 768px;
     padding: 1rem;
   }
 
@@ -509,27 +497,15 @@ button {
     width: 100%;
   }
   .cells-list {
-    /* display: flex;
-    flex-wrap: wrap;
-    gap: 5px; */
     font-size: 12px;
     width: unset;
   }
-
-  .landing-page {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    align-items: center;
-  }
-
-  .landing-page .info {
-    /* gap: unset; */
-  }
-
   .bingofy-logo {
-    /* width: 50%; */
-    /* margin: 0 auto; */
+    width: 100%;
+    /* height: 100%; */
+  }
+  .landing-page .info {
+    gap: 0;
   }
 }
 

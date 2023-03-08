@@ -10,8 +10,11 @@ const GameBoard = ({ board }) => {
     ? JSON.parse(localStorage.getItem('board ' + board._id))
     : null;
 
+  //FIXME: handle update by other user and reset localstorage if board has been updated
+  // maybe move local storage handler to Game component
   const [boardInfo, setboardInfo] = useState(localStorageData || board);
   const [isBingo, setIsBingo] = useState(false);
+
   const [copied, setCopied] = useState(false);
 
   const checkBingo = useCallback((activeCells) => {
@@ -55,6 +58,7 @@ const GameBoard = ({ board }) => {
     }
   };
   const shuffleCells = () => {
+    localStorage.removeItem('board ' + board._id);
     setboardInfo({
       ...boardInfo,
       cells: boardInfo.cells.slice().sort(() => Math.random() - 0.5),
@@ -79,7 +83,7 @@ const GameBoard = ({ board }) => {
     setCopied(true);
     toast.success('URL copied to clipboard');
   };
-
+  //FIXME: in production the board only shows after refresh
   useEffect(() => {
     checkBingo(boardInfo.activeCells);
     saveBoard();
@@ -100,14 +104,16 @@ const GameBoard = ({ board }) => {
     <>
       <div className="content">
         <div className="buttons">
-          <button
-            title="Copy URL and share with friends"
-            onClick={copyURL}
-            className="btn btn-primary copy"
-          >
-            <FiCopy size={'1.3rem'} />
-            Share
-          </button>
+          {!board.isPrivate && (
+            <button
+              title="Copy URL and share with friends"
+              onClick={copyURL}
+              className="btn btn-primary copy"
+            >
+              <FiCopy size={'1.3rem'} />
+              Share
+            </button>
+          )}
           <h3>{boardInfo.title}</h3>
           {isBingo ? <h3>YOU WON!</h3> : null}
           {boardInfo.activeCells.length === 0 ? (

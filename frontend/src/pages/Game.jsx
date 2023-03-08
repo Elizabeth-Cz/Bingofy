@@ -17,6 +17,8 @@ const Game = () => {
 
   const [board, setBoard] = useState({});
 
+  const localStorageData = localStorage.getItem('board ' + board._id);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Game = () => {
     setBoard(boards);
   }, [boards]);
 
-  if (isLoading || board === {}) return <Spinner />;
+  if (isLoading || board === {} || !board) return <Spinner />;
 
   if (isError) return <div>{message}</div>;
 
