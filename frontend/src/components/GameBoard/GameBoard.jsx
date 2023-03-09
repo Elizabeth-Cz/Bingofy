@@ -60,9 +60,12 @@ const GameBoard = ({ board }) => {
   };
   const shuffleCells = () => {
     localStorage.removeItem('board ' + board._id);
+    const shuffledCells = JSON.parse(JSON.stringify(boardInfo.cells)).sort(
+      () => Math.random() - 0.5
+    );
     setboardInfo({
       ...boardInfo,
-      cells: boardInfo.cells.slice().sort(() => Math.random() - 0.5),
+      cells: shuffledCells,
     });
   };
 
