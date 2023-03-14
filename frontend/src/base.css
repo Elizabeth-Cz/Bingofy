@@ -140,14 +140,18 @@ input:focus {
 
 /* HOME PAGE */
 
-.landing-page {
+.section {
+  max-width: 920px;
+  margin: 5rem auto;
+}
+
+.introduction {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: 30px 60px;
   gap: 2rem;
 }
 
-.landing-page .info {
+.introduction .info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -157,12 +161,28 @@ input:focus {
 .info p {
   line-height: 2;
 }
+.instructions,
+.example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
 .bingofy-logo {
   display: block;
   /* width: 200px; */
   width: 100%;
 }
+
+.cards {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+}
+
+/* CONTACT PAGE */
 
 .contact-cards {
   display: grid;
@@ -175,6 +195,7 @@ input:focus {
   border: 2px solid #c83596;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   box-shadow: -2px 2px #c83596;
   border-radius: 10px;
@@ -444,10 +465,29 @@ button {
     width: 100%;
     aspect-ratio: 1/1;
   }
-  .landing-page {
+
+  .section {
+    margin-top: 1rem;
+  }
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .introduction {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bingofy-logo {
+    max-width: 50%;
+    margin: 0 auto;
   }
 
   .btn:hover {
@@ -483,7 +523,7 @@ button {
     margin: 5px 0;
   }
 
-  .landing-page {
+  .introduction {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -516,14 +556,14 @@ button {
     width: unset;
   }
 
-  .landing-page {
+  .introduction {
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: center; */
     align-items: center;
   }
 
-  .landing-page .info {
+  .introduction .info {
     /* gap: unset; */
   }
 

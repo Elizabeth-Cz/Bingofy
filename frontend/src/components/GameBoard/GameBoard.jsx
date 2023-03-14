@@ -91,45 +91,43 @@ const GameBoard = ({ board }) => {
 
   return (
     <>
-      <div className="content">
-        <div className="buttons">
-          <button
-            title="Copy URL and share with friends"
-            onClick={copyURL}
-            className="btn btn-primary copy"
-          >
-            <FiCopy size={'1.3rem'} />
-            Share
+      <div className="buttons">
+        <button
+          title="Copy URL and share with friends"
+          onClick={copyURL}
+          className="btn btn-primary copy"
+        >
+          <FiCopy size={'1.3rem'} />
+          Share
+        </button>
+        <h3>{boardInfo.title}</h3>
+        {isBingo ? <h3>YOU WON!</h3> : null}
+        {boardInfo.activeCells.length === 0 ? (
+          <button className="btn btn-reverse" onClick={shuffleCells}>
+            Shuffle
           </button>
-          <h3>{boardInfo.title}</h3>
-          {isBingo ? <h3>YOU WON!</h3> : null}
-          {boardInfo.activeCells.length === 0 ? (
-            <button className="btn btn-reverse" onClick={shuffleCells}>
-              Shuffle
-            </button>
-          ) : (
-            <button className="btn btn-reverse" onClick={resetCells}>
-              Reset
-            </button>
-          )}
-        </div>
-        {isBingo ? <BingoWin /> : null}
-        <div className="board-grid">
-          {boardInfo.cells.map((cell, index) => (
-            <p
-              className={`board-cell ${
-                boardInfo.activeCells.includes(index) ? 'active-cell' : ''
-              }`}
-              key={index}
-              onClick={() => {
-                handleCellClick(index);
-                checkBingo(boardInfo.activeCells);
-              }}
-            >
-              {cell}
-            </p>
-          ))}
-        </div>
+        ) : (
+          <button className="btn btn-reverse" onClick={resetCells}>
+            Reset
+          </button>
+        )}
+      </div>
+      {isBingo ? <BingoWin /> : null}
+      <div className="board-grid">
+        {boardInfo.cells.map((cell, index) => (
+          <p
+            className={`board-cell ${
+              boardInfo.activeCells.includes(index) ? 'active-cell' : ''
+            }`}
+            key={index}
+            onClick={() => {
+              handleCellClick(index);
+              checkBingo(boardInfo.activeCells);
+            }}
+          >
+            {cell}
+          </p>
+        ))}
       </div>
     </>
   );

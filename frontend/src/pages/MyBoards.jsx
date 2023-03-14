@@ -37,7 +37,7 @@ const MyBoards = () => {
   }
 
   return (
-    <section className="content">
+    <div className="content">
       <h1>
         Your <span className="logo">Bingofy</span> Boards
       </h1>
@@ -54,7 +54,7 @@ const MyBoards = () => {
       ) : (
         <h3>You have not set any boards</h3>
       )}
-    </section>
+    </div>
   );
 };
 

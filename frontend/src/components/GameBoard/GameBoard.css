@@ -32,6 +32,7 @@
   align-items: center;
   max-width: 600px;
   margin: 5px auto;
+  width: 100%;
 }
 
 /* Media queries */
