@@ -149,6 +149,8 @@ input:focus {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  align-items: center;
+  justify-items: center;
 }
 
 .introduction .info {
@@ -187,7 +189,8 @@ input:focus {
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  margin: 2rem 0;
+  gap: 20px;
 }
 
 .contact-card {
@@ -197,10 +200,16 @@ input:focus {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  align-items: center;
   box-shadow: -2px 2px #c83596;
   border-radius: 10px;
   border: 2px solid #c83596;
   box-shadow: -5px 5px #c83596;
+  transition: transform ease-in-out 100ms;
+}
+
+.contact-card:hover {
+  transform: scale(105%);
 }
 
 /* BOARD FORM */
@@ -239,18 +248,6 @@ input:focus {
   top: -8px;
   right: -2px;
 }
-/* 
-.checkbox {
-  display: flex;
-  gap: 7px;
-} */
-
-/* input[type='checkbox'] {
-  width: unset;
-  box-shadow: none;
-  margin: 0;
-} */
-
 /* trying to style checkbox */
 
 input[type='checkbox'] {
@@ -537,7 +534,6 @@ button {
 /* Media query for screens between 768px and 1024px wide */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
-    max-width: 768px;
     padding: 1rem;
   }
 
@@ -549,9 +545,6 @@ button {
     width: 100%;
   }
   .cells-list {
-    /* display: flex;
-    flex-wrap: wrap;
-    gap: 5px; */
     font-size: 12px;
     width: unset;
   }
@@ -568,8 +561,11 @@ button {
   }
 
   .bingofy-logo {
-    /* width: 50%; */
-    /* margin: 0 auto; */
+    width: 100%;
+    /* height: 100%; */
+  }
+  .hero .info {
+    gap: 0;
   }
 }
 

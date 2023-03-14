@@ -5,8 +5,11 @@ const Contact = () => {
   return (
     <div className="content">
       <h1>Hi there!</h1>
-      <p>I'm Liz and I'm a web developer,</p>
-      <p>Welcome to my project!</p>
+      <p>
+        I'm Liz and I'm a web developer, I'm passionate about front end web
+        development and design.
+      </p>
+      <p>Stay in touch!</p>
       <section className="contact-cards">
         <article className="contact-card">
           <AiFillMail />

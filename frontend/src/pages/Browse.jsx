@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardItem from '../components/BoardItem/BoardItem';
+import Spinner from '../components/Spinner/Spinner';
 import { getPublicBoards } from '../features/boards/boardSlice';
 
 const Browse = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { boards } = useSelector((state) => state.boards);
+  const { boards, isLoading } = useSelector((state) => state.boards);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
@@ -17,10 +18,15 @@ const Browse = () => {
     dispatch(getPublicBoards());
   }, []);
 
-  const filteredBoards = boards.filter((board) => {
-    return board.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  const filteredBoards = Array.isArray(boards)
+    ? boards.filter((board) => {
+        return board.title.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+    : [];
 
+  if (isLoading) return <Spinner />;
+
+  // TODO: improve search page by category
   return (
     <div className="content">
       <div className="form-group">

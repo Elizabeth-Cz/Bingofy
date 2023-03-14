@@ -22,8 +22,5 @@
   "homepage": "https://github.com/Elizabeth-Cz/Bingofy#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
-  },
-  "dependencies": {
-    "react-confetti": "^6.1.0"
   }
 }

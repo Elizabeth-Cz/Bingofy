@@ -17,7 +17,7 @@ const BoardItem = ({ board }) => {
   const handlePlay = () => {
     navigate('/play/' + board._id);
   };
-
+  // TODO: add creating user to item
   return (
     <div className="board-item">
       <div className="controls">
