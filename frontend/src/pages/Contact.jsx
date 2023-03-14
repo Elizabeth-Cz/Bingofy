@@ -1,4 +1,4 @@
-import { AiFillPhone, AiOutlineMail } from 'react-icons/ai';
+import { AiFillPhone, AiFillMail } from 'react-icons/ai';
 import { FaLinkedin, FaGithubSquare } from 'react-icons/fa';
 
 const Contact = () => {
@@ -12,38 +12,34 @@ const Contact = () => {
       <p>Stay in touch!</p>
       <section className="contact-cards">
         <article className="contact-card">
-          <a href="mailto:liz.cz91@gmail.com">
-            <AiOutlineMail size={'2rem'} />
-          </a>
+          <AiFillMail />
           <p>Email Address</p>
           <p>liz.cz91@gmail.com</p>
         </article>
         <article className="contact-card">
-          <a href="tel:+33744530109">
-            <AiFillPhone size={'2rem'} />
-          </a>
+          <AiFillPhone />
           <p>Phone Number</p>
-          <p>+33 0744530109</p>
+          liz.cz91@gmail.com
         </article>
         <article className="contact-card">
+          <FaLinkedin />
           <a
             href="https://linkedin.com/in/elizabeth-czarny"
             rel="noreferrer"
-            target="_blank"
+            target={'_blank'}
           >
-            <FaLinkedin size={'2rem'} />
+            LinkedIn Profile
           </a>
-          <p>LinkedIn</p>
         </article>
         <article className="contact-card">
+          <FaGithubSquare />
           <a
             href="https://github.com/Elizabeth-Cz"
             rel="noreferrer"
-            target="_blank"
+            target={'_blank'}
           >
-            <FaGithubSquare size={'2rem'} />
+            GitHub Page
           </a>
-          <p>GitHub</p>
         </article>
       </section>
     </div>

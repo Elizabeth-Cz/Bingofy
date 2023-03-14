@@ -45,8 +45,10 @@ const Game = () => {
 
   if (isError) return <div>{message}</div>;
 
-  if (board && Object.keys(board).length > 0)
-    return <GameBoard board={board} />;
+  if (board && Object.keys(board).length > 0) return;
+  <div className="content">
+    <GameBoard board={board} />;
+  </div>;
 };
 
 export default Game;

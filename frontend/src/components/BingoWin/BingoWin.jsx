@@ -14,22 +14,29 @@ const BingoWin = () => {
   }, []);
 
   return (
-    <div className="bingo">
-      <div className="confetti-container">
-        <Confetti
-          width={window.innerWidth / 1.01}
-          height={window.innerHeight}
-          recycle={false}
-          numberOfPieces={700}
-          gravity={0.2}
-        />
-      </div>
+    <>
       {showBingo && (
-        <div className="message-container">
-          <h2 className="message-title">BINGO!</h2>
+        <div className="bingo">
+          <div className="confetti-container">
+            <Confetti
+              width={window.innerWidth / 1.01}
+              height={window.innerHeight}
+              recycle={false}
+              numberOfPieces={700}
+              gravity={0.2}
+              burst={true}
+              // confettiSource={{
+              //   x: window.innerWidth / 2,
+              //   y: window.innerHeight / 2,
+              // }}
+            />
+          </div>
+          <div className="message-container">
+            <h2 className="message-title">BINGO!</h2>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,11 +1,62 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Card from '../components/Card/Card';
+import { MdEditNote, MdReply } from 'react-icons/md';
+import BingoIcon from '../assets/BingoIcon';
+import GameBoard from '../components/GameBoard/GameBoard';
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
+
+  const board = {
+    _id: {
+      $oid: '63e7d9c73f7d865962d00454',
+    },
+    user: {
+      $oid: '63d9337e83d034e38e9108f1',
+    },
+    title: 'Friends',
+    cells: [
+      'Chandler makes a sarcastic comment',
+      'Phoebe performs a song',
+      'Someone mentions Central Perk',
+      'Joey and Chandler share a moment',
+      'Ross and Rachel argue',
+      'Phoebe reveals a quirky belief',
+      'Chandler mentions his job in data processing',
+      'Joey lands a new acting gig',
+      'Chandler and Joey argue about money',
+      'Monica and Rachel fight over a guy',
+      'Phoebe tells a bizarre story',
+      'Joey goes on a date',
+      'Rachel gets a new haircut',
+      'Chandler gets caught in a lie',
+      'Monica invites her friends over for a party',
+      'Gunther appearance',
+      'Monica cleans',
+      'Ugly naked guy',
+      "Ross's dinosaur obsession ",
+      "Phoebe's dead mom",
+      'Joey loves food',
+      'Ross divorces ',
+      'Monica was fat',
+      'Ross says "We were on a break"',
+      '"How You Doin\'?"',
+    ],
+    tags: ['Friends', 'Comedy', 'Funny'],
+    category: 'TV shows',
+    activeCells: [],
+    isPrivate: false,
+    createdAt: {
+      $date: {
+        $numberLong: '1676135060866',
+      },
+    },
+  };
+
   return (
-    <main>
-      <section className="hero">
+    <div>
+      <section className="introduction section">
         <div className="info">
           <h1>
             Welcome to <span className="logo">Bingofy</span>!
@@ -27,19 +78,77 @@ const Home = () => {
             </Link>
           )}
         </div>
-        {/* <div> */}
-        <img
-          src={require('../assets/bingofy-logo.png')}
-          alt="logo"
-          className="bingofy-logo"
-        />
-        {/* </div> */}
+        <div>
+          <img
+            src={require('../assets/bingofy-logo.png')}
+            alt="logo"
+            className="bingofy-logo"
+          />
+        </div>
       </section>
-      <section className="how-to-play">
-        <h2>How to play?</h2>
-        <img src={require('../assets/wins.gif')} alt="wins conditions" />
+
+      <section className="instructions section">
+        <div className="info">
+          <h2>How to play?</h2>
+          <p>
+            Setting up a Bingofy board and playing with your friends is as easy
+            as spelling B-I-N-G-O.
+          </p>
+        </div>
+        <div className="cards">
+          <Card title="Create" icon={<MdEditNote />}>
+            <p>
+              Watching a TV show? Create a bingo board from catchphrases and
+              common character behaviors. “Joey says How You Doin'” is a must
+              for any “Friends” board!
+            </p>
+            <p>
+              You need 25 different events to create a 5x5 Bingofy board.
+              Alternatively, you can look for a Bingofy board from our browse
+              page and start playing right away.
+            </p>
+          </Card>
+          <Card title="Share" icon={<MdReply />}>
+            <p>
+              While you can certainly play Bingofy by yourself, the fun is
+              doubled when sharing a board with friends.{' '}
+            </p>
+            <p>
+              Computers, tablets, phones - you can share and play Bingofy
+              anywhere, anytime.
+            </p>
+            <p>
+              You can share a board by clicking the “Share” button and sending
+              the link to your friends!
+            </p>
+          </Card>
+          <Card title="Play" icon={<BingoIcon />}>
+            <p>
+              As you are watching your show (or doing anything else, really),
+              look for the specific events from your Bingofy board.{' '}
+            </p>
+            <p>
+              Did Joey say “How You Doin'”? Mark it on your board! Bingofy can
+              turn anything into an exciting game. 
+            </p>
+            <p>
+              The first one 5 cases in a row wins the game - but you can easily
+              create more boards or reshuffle your boards and start again!
+            </p>
+          </Card>
+        </div>
       </section>
-    </main>
+      <section className="example section">
+        <div className="info">
+          <h2>Give it a try!</h2>
+          <p>
+            Here is a "Friends" themes Bingofy board, click the different cells
+            and see what happens!
+          </p>
+        </div>
+        <GameBoard board={board} />
+      </section>
+    </div>
   );
 };
 

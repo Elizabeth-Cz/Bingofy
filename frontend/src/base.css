@@ -140,16 +140,20 @@ input:focus {
 
 /* HOME PAGE */
 
-.hero {
+.section {
+  max-width: 920px;
+  margin: 5rem auto;
+}
+
+.introduction {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: 30px 60px;
   gap: 2rem;
   align-items: center;
   justify-items: center;
 }
 
-.hero .info {
+.introduction .info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -159,11 +163,28 @@ input:focus {
 .info p {
   line-height: 2;
 }
+.instructions,
+.example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
 .bingofy-logo {
   display: block;
-  width: 80%;
+  /* width: 200px; */
+  width: 100%;
 }
+
+.cards {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+}
+
+/* CONTACT PAGE */
 
 .contact-cards {
   display: grid;
@@ -177,6 +198,7 @@ input:focus {
   border: 2px solid #c83596;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   align-items: center;
   box-shadow: -2px 2px #c83596;
@@ -440,10 +462,29 @@ button {
     width: 100%;
     aspect-ratio: 1/1;
   }
-  .hero {
+
+  .section {
+    margin-top: 1rem;
+  }
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .introduction {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bingofy-logo {
+    max-width: 50%;
+    margin: 0 auto;
   }
 
   .btn:hover {
@@ -479,7 +520,7 @@ button {
     margin: 5px 0;
   }
 
-  .hero {
+  .introduction {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -507,6 +548,18 @@ button {
     font-size: 12px;
     width: unset;
   }
+
+  .introduction {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .introduction .info {
+    /* gap: unset; */
+  }
+
   .bingofy-logo {
     width: 100%;
     /* height: 100%; */
