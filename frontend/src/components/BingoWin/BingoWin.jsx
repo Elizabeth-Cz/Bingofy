@@ -24,11 +24,6 @@ const BingoWin = () => {
               recycle={false}
               numberOfPieces={700}
               gravity={0.2}
-              burst={true}
-              // confettiSource={{
-              //   x: window.innerWidth / 2,
-              //   y: window.innerHeight / 2,
-              // }}
             />
           </div>
           <div className="message-container">
