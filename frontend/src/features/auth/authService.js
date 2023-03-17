@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const API_URL = `https://bingofy-api.onrender.com/api/users/`;
-
+const environment = process.env.NODE_ENV;
+const API_URL =
+  environment === 'development'
+    ? '/api/users/'
+    : 'https://bingofy-api.onrender.com/api/users/';
 // Register user
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData);
