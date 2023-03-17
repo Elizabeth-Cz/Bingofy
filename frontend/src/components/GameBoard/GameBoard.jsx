@@ -104,41 +104,37 @@ const GameBoard = ({ board }) => {
     return <Spinner />;
   }
 
-  if (
-    boardInfo.cells &&
-    boardInfo.cells.length &&
-    boardInfo.activeCells &&
-    boardInfo.activeCells.length
-  ) {
-    return (
-      <>
-        <div className="content">
-          <div className="buttons">
-            {!board.isPrivate && (
-              <button
-                title="Copy URL and share with friends"
-                onClick={copyURL}
-                className="btn btn-primary copy"
-              >
-                <FiCopy size={'1.3rem'} />
-                Share
-              </button>
-            )}
-            <h3>{board.title}</h3>
-            {isBingo ? <h3>YOU WON!</h3> : null}
-            {boardInfo?.activeCells?.length === 0 ? (
-              <button className="btn btn-reverse" onClick={shuffleCells}>
-                Shuffle
-              </button>
-            ) : (
-              <button className="btn btn-reverse" onClick={resetCells}>
-                Reset
-              </button>
-            )}
-          </div>
-          {isBingo ? <BingoWin /> : null}
+  return (
+    <>
+      <div className="content">
+        <div className="buttons">
+          {!board.isPrivate && (
+            <button
+              title="Copy URL and share with friends"
+              onClick={copyURL}
+              className="btn btn-primary copy"
+            >
+              <FiCopy size={'1.3rem'} />
+              Share
+            </button>
+          )}
+          <h3>{board.title}</h3>
+          {isBingo ? <h3>YOU WON!</h3> : null}
+          {boardInfo.activeCells.length === 0 ? (
+            <button className="btn btn-reverse" onClick={shuffleCells}>
+              Shuffle
+            </button>
+          ) : (
+            <button className="btn btn-reverse" onClick={resetCells}>
+              Reset
+            </button>
+          )}
+        </div>
+        {isBingo ? <BingoWin /> : null}
+        {/* Only render board if cells is loaded */}
+        {boardInfo.cells && boardInfo.cells.length ? (
           <div className="board-grid">
-            {board?.cells?.map((cell, index) => (
+            {boardInfo.cells.map((cell, index) => (
               <p
                 className={`board-cell ${
                   boardInfo?.activeCells?.includes(index) ? 'active-cell' : ''
@@ -153,10 +149,12 @@ const GameBoard = ({ board }) => {
               </p>
             ))}
           </div>
-        </div>
-      </>
-    );
-  }
+        ) : (
+          <Spinner />
+        )}
+      </div>
+    </>
+  );
 };
 
 export default GameBoard;
