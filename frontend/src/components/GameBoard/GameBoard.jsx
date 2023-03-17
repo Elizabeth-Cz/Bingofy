@@ -120,7 +120,7 @@ const GameBoard = ({ board }) => {
           )}
           <h3>{boardInfo.title}</h3>
           {isBingo ? <h3>YOU WON!</h3> : null}
-          {boardInfo.activeCells.length === 0 ? (
+          {boardInfo?.activeCells?.length === 0 ? (
             <button className="btn btn-reverse" onClick={shuffleCells}>
               Shuffle
             </button>
@@ -135,12 +135,12 @@ const GameBoard = ({ board }) => {
           {boardInfo.cells.map((cell, index) => (
             <p
               className={`board-cell ${
-                boardInfo.activeCells.includes(index) ? 'active-cell' : ''
+                boardInfo?.activeCells?.includes(index) ? 'active-cell' : ''
               }`}
               key={index}
               onClick={() => {
                 handleCellClick(index);
-                checkBingo(boardInfo.activeCells);
+                checkBingo(boardInfo?.activeCells);
               }}
             >
               {cell}
