@@ -21,26 +21,26 @@ const Contact = () => {
           <p>Phone Number</p>
           liz.cz91@gmail.com
         </article>
-        <article className="contact-card">
-          <FaLinkedin />
-          <a
-            href="https://linkedin.com/in/elizabeth-czarny"
-            rel="noreferrer"
-            target={'_blank'}
-          >
+        <a
+          href="https://linkedin.com/in/elizabeth-czarny"
+          rel="noreferrer"
+          target={'_blank'}
+        >
+          <article className="contact-card">
+            <FaLinkedin />
             LinkedIn Profile
-          </a>
-        </article>
-        <article className="contact-card">
-          <FaGithubSquare />
-          <a
-            href="https://github.com/Elizabeth-Cz"
-            rel="noreferrer"
-            target={'_blank'}
-          >
+          </article>
+        </a>
+        <a
+          href="https://github.com/Elizabeth-Cz"
+          rel="noreferrer"
+          target={'_blank'}
+        >
+          <article className="contact-card">
+            <FaGithubSquare />
             GitHub Page
-          </a>
-        </article>
+          </article>
+        </a>
       </section>
     </div>
   );
