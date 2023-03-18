@@ -9,12 +9,6 @@ const Home = () => {
   const { user } = useSelector((state) => state.auth);
 
   const board = {
-    _id: {
-      $oid: '63e7d9c73f7d865962d00454',
-    },
-    user: {
-      $oid: '63d9337e83d034e38e9108f1',
-    },
     title: 'Friends',
     cells: [
       'Chandler makes a sarcastic comment',
@@ -47,11 +41,6 @@ const Home = () => {
     category: 'TV shows',
     activeCells: [],
     isPrivate: false,
-    createdAt: {
-      $date: {
-        $numberLong: '1676135060866',
-      },
-    },
   };
 
   return (

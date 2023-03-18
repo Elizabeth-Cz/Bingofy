@@ -1,21 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 import BingoWin from '../BingoWin/BingoWin';
-import Spinner from '../Spinner/Spinner';
 import './GameBoard.css';
 import { FiCopy } from 'react-icons/fi';
 import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBoard } from '../../features/boards/boardSlice';
+import Spinner from '../Spinner/Spinner';
 
 const GameBoard = ({ board }) => {
-  const localStorageData = localStorage.getItem('board ' + board._id)
-    ? JSON.parse(localStorage.getItem('board ' + board._id))
-    : null;
-  console.log(process.env.NODE_ENV);
-
-  //FIXME: storage data:
-  // if activeCells === [] get boardInfo from board prop
-  // if activeCells !== [] and there is a game is progress use the existing boardInfo
-  const [boardInfo, setboardInfo] = useState(localStorageData || board);
+  const { isError, message, isLoading, isSuccess } = useSelector(
+    (state) => state.boards
+  );
   const [isBingo, setIsBingo] = useState(false);
+  const [boardData, setBoardData] = useState(board || {});
 
   const [copied, setCopied] = useState(false);
 
@@ -47,36 +44,31 @@ const GameBoard = ({ board }) => {
   }, []);
 
   const handleCellClick = (index) => {
-    if (boardInfo.activeCells.includes(index)) {
-      setboardInfo({
-        ...boardInfo,
-        activeCells: boardInfo.activeCells.filter((cell) => cell !== index),
+    if (boardData.activeCells.includes(index)) {
+      setBoardData({
+        ...boardData,
+        activeCells: boardData.activeCells.filter((cell) => cell !== index),
       });
     } else {
-      setboardInfo({
-        ...boardInfo,
-        activeCells: [...boardInfo.activeCells, index],
+      setBoardData({
+        ...boardData,
+        activeCells: [...boardData.activeCells, index],
       });
     }
   };
   const shuffleCells = () => {
-    localStorage.removeItem('board ' + board._id);
-    const shuffledCells = JSON.parse(JSON.stringify(boardInfo.cells)).sort(
+    const shuffledCells = JSON.parse(JSON.stringify(boardData.cells)).sort(
       () => Math.random() - 0.5
     );
-    setboardInfo({
-      ...boardInfo,
+    setBoardData({
+      ...boardData,
       cells: shuffledCells,
     });
   };
 
   const resetCells = () => {
-    setboardInfo({ ...boardInfo, activeCells: [] });
+    setBoardData({ ...boardData, activeCells: [] });
   };
-
-  const saveBoard = useCallback(() => {
-    localStorage.setItem('board ' + board._id, JSON.stringify(boardInfo));
-  }, [boardInfo, board]);
 
   const copyURL = () => {
     const el = document.createElement('input');
@@ -88,68 +80,64 @@ const GameBoard = ({ board }) => {
     setCopied(true);
     toast.success('URL copied to clipboard');
   };
+  useEffect(() => {
+    if (isSuccess) {
+      setBoardData(board);
+    }
+  }, [board, isSuccess]);
 
   useEffect(() => {
-    checkBingo(boardInfo.activeCells);
-    saveBoard();
-  }, [
-    boardInfo.activeCells,
-    boardInfo.cells,
-    checkBingo,
-    saveBoard,
-    board,
-    localStorageData,
-  ]);
+    checkBingo(boardData.activeCells);
+  }, [checkBingo, boardData]);
 
-  if (!board || !boardInfo) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
+  console.log(boardData);
 
-  return (
-    <>
-      <div className="buttons">
-        {!board.isPrivate && (
-          <button
-            title="Copy URL and share with friends"
-            onClick={copyURL}
-            className="btn btn-primary copy"
-          >
-            <FiCopy size={'1.3rem'} />
-            Share
-          </button>
-        )}
-        <h3>{board.title}</h3>
-        {isBingo ? <h3>YOU WON!</h3> : null}
-        {boardInfo.activeCells.length === 0 ? (
-          <button className="btn btn-reverse" onClick={shuffleCells}>
-            Shuffle
-          </button>
-        ) : (
-          <button className="btn btn-reverse" onClick={resetCells}>
-            Reset
-          </button>
-        )}
-      </div>
-      {isBingo ? <BingoWin /> : null}
-      {/* Only render board if cells is loaded */}
-      <div className="board-grid">
-        {boardInfo.cells.map((cell, index) => (
-          <p
-            className={`board-cell ${
-              boardInfo.activeCells.includes(index) ? 'active-cell' : ''
-            }`}
-            key={index}
-            onClick={() => {
-              handleCellClick(index);
-              checkBingo(boardInfo.activeCells);
-            }}
-          >
-            {cell}
-          </p>
-        ))}
-      </div>
-    </>
-  );
+  if (isSuccess)
+    return (
+      <>
+        <div className="buttons">
+          {!boardData.isPrivate && (
+            <button
+              title="Copy URL and share with friends"
+              onClick={copyURL}
+              className="btn btn-primary copy"
+            >
+              <FiCopy size={'1.3rem'} />
+              Share
+            </button>
+          )}
+          <h3>{boardData.title}</h3>
+          {isBingo ? <h3>YOU WON!</h3> : null}
+          {boardData?.activeCells?.length === 0 ? (
+            <button className="btn btn-reverse" onClick={shuffleCells}>
+              Shuffle
+            </button>
+          ) : (
+            <button className="btn btn-reverse" onClick={resetCells}>
+              Reset
+            </button>
+          )}
+        </div>
+        {isBingo ? <BingoWin /> : null}
+        <div className="board-grid">
+          {boardData.cells.map((cell, index) => (
+            <p
+              className={`board-cell ${
+                boardData.activeCells.includes(index) ? 'active-cell' : ''
+              }`}
+              key={index}
+              onClick={() => {
+                handleCellClick(index);
+                checkBingo(boardData.activeCells);
+              }}
+            >
+              {cell}
+            </p>
+          ))}
+        </div>
+      </>
+    );
 };
 
 export default GameBoard;
