@@ -52,7 +52,7 @@ export const getBoards = createAsyncThunk(
 
 // Get sinlge board
 export const getBoard = createAsyncThunk(
-  'boards/getOne',
+  'board/getOne',
   async (id, thunkAPI) => {
     try {
       // eliminate infinate loop of "Cannot read properties of null (reading 'token')"
@@ -129,7 +129,7 @@ export const updateBoard = createAsyncThunk(
 );
 
 export const boardSlice = createSlice({
-  name: 'board',
+  name: 'boards',
   initialState,
   reducers: {
     reset: (state) => initialState,
