@@ -119,8 +119,8 @@ const GameBoard = ({ board }) => {
           )}
         </div>
         {isBingo ? <BingoWin /> : null}
-        <div className="board-grid">
-          {boardData.cells.map((cell, index) => (
+        {/* <div className="board-grid">
+          {boardData?.cells.map((cell, index) => (
             <p
               className={`board-cell ${
                 boardData.activeCells.includes(index) ? 'active-cell' : ''
@@ -134,7 +134,7 @@ const GameBoard = ({ board }) => {
               {cell}
             </p>
           ))}
-        </div>
+        </div> */}
       </>
     );
 };
