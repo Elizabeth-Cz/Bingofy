@@ -91,7 +91,6 @@ const GameBoard = ({ board }) => {
   }, [checkBingo, boardData]);
 
   if (isLoading) return <Spinner />;
-  console.log(boardData);
 
   if (isSuccess)
     return (
