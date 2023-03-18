@@ -8,12 +8,11 @@ import './BoardForm.css';
 
 function BoardForm({ data }) {
   const { id } = useParams();
-  const board = data.find((b) => b._id === id);
+  const board = data?.find((b) => b._id === id);
   console.log('boardForm', data);
   console.log('boardForm', board);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { isLoading } = useSelector((state) => state.boards);
 
   const [showErrors, setShowErrors] = useState(false);
   const [boardData, setBoardData] = useState(
@@ -170,7 +169,7 @@ function BoardForm({ data }) {
         </div>
       </form>
       <div className="cells-list">
-        {boardData.cells.map((cell, i) => (
+        {boardData?.cells.map((cell, i) => (
           <div className="cell" key={i}>
             <p>{cell}</p>
             <button className="delete" onClick={(e) => deleteCell(e, i)}>
