@@ -28,10 +28,6 @@ const Game = () => {
       navigate('/login');
       return;
     }
-
-    return () => {
-      dispatch(reset());
-    };
   }, [dispatch, isError, message, user, id, navigate]);
 
   if (isError) return <div>{message}</div>;
