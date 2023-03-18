@@ -10,7 +10,6 @@
 
 .board-cell {
   border-radius: 5px;
-  /* border: 2px solid black; */
   font-size: 14px;
   text-align: center;
   background-color: #d9d9d9;
@@ -20,7 +19,6 @@
   cursor: pointer;
   padding: 6px;
   min-height: 80px;
-  /* color: black;   */
   transition: border-radius ease-in-out 150ms;
 }
 
@@ -59,6 +57,11 @@
     border-width: 1px;
     width: 100%;
     padding: 2px;
+    border: 1px solid #fff;
+    font-size: 12px;
+  }
+  .board-cell.active-cell {
+    border-radius: 15px;
   }
   .buttons {
     /* font-size: 13px; */
