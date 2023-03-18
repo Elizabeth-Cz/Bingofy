@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardItem from '../components/BoardItem/BoardItem';
 import Spinner from '../components/Spinner/Spinner';
-import { getPublicBoards } from '../features/boards/boardSlice';
+import { getPublicBoards, reset } from '../features/boards/boardSlice';
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,11 @@ const Browse = () => {
 
   useEffect(() => {
     dispatch(getPublicBoards());
-  }, []);
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
 
   const filteredBoards = Array.isArray(boards)
     ? boards.filter((board) => {
