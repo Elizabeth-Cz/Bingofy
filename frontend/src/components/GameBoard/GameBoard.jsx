@@ -119,22 +119,24 @@ const GameBoard = ({ board }) => {
           )}
         </div>
         {isBingo ? <BingoWin /> : null}
-        {/* <div className="board-grid">
-          {boardData?.cells.map((cell, index) => (
-            <p
-              className={`board-cell ${
-                boardData.activeCells.includes(index) ? 'active-cell' : ''
-              }`}
-              key={index}
-              onClick={() => {
-                handleCellClick(index);
-                checkBingo(boardData.activeCells);
-              }}
-            >
-              {cell}
-            </p>
-          ))}
-        </div> */}
+        {boardData.cells && (
+          <div className="board-grid">
+            {boardData.cells.map((cell, index) => (
+              <p
+                className={`board-cell ${
+                  boardData.activeCells.includes(index) ? 'active-cell' : ''
+                }`}
+                key={index}
+                onClick={() => {
+                  handleCellClick(index);
+                  checkBingo(boardData.activeCells);
+                }}
+              >
+                {cell}
+              </p>
+            ))}
+          </div>
+        )}
       </>
     );
 };
