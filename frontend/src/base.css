@@ -417,7 +417,7 @@ button {
 }
 
 /* Media query for screens between 360px and 599px wide */
-@media screen and (min-width: 360px) and (max-width: 599px) {
+@media screen and (min-width: 360px) and (max-width: 600px) {
   .container {
     margin: 0 3px;
     width: unset;
@@ -525,6 +525,10 @@ button {
     flex-direction: column;
     justify-content: center;
   }
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
 
   .bingofy-logo {
     width: 50%;
@@ -558,6 +562,19 @@ button {
 
   .introduction .info {
     /* gap: unset; */
+  }
+
+  .instructions .cards {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .instructions .cards .card {
+    max-width: 700px;
+  }
+  .instructions .cards .card p {
+    width: 100%;
   }
 
   .bingofy-logo {
