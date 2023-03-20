@@ -32,7 +32,7 @@ const getBoards = async (token) => {
   return response.data;
 };
 
-// Get user boards
+// Get public boards
 const getPublicBoards = async () => {
   const response = await axios.get(API_URL + 'public');
 
@@ -40,14 +40,8 @@ const getPublicBoards = async () => {
 };
 
 // Get user boards
-const getBoard = async (boardId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const response = await axios.get(API_URL + boardId, config);
+const getBoard = async (boardId) => {
+  const response = await axios.get(API_URL + boardId);
 
   return response.data;
 };

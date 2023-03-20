@@ -3,14 +3,11 @@ import BingoWin from '../BingoWin/BingoWin';
 import './GameBoard.css';
 import { FiCopy } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from 'react-redux';
-import { getBoard } from '../../features/boards/boardSlice';
+import { useSelector } from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 
 const GameBoard = ({ board }) => {
-  const { isError, message, isLoading, isSuccess } = useSelector(
-    (state) => state.boards
-  );
+  const { isLoading, isSuccess } = useSelector((state) => state.boards);
   const [isBingo, setIsBingo] = useState(false);
   const [boardData, setBoardData] = useState(board || {});
 
@@ -80,6 +77,7 @@ const GameBoard = ({ board }) => {
     setCopied(true);
     toast.success('URL copied to clipboard');
   };
+
   useEffect(() => {
     if (isSuccess) {
       setBoardData(board);
@@ -96,20 +94,18 @@ const GameBoard = ({ board }) => {
     return (
       <>
         <div className="buttons">
-          {!boardData.isPrivate && (
-            <button
-              title="Copy URL and share with friends"
-              onClick={copyURL}
-              className="btn btn-primary copy"
-            >
-              <FiCopy size={'1.3rem'} />
-              Share
-            </button>
-          )}
+          <button
+            title="Copy URL and share with friends"
+            onClick={copyURL}
+            className="btn btn-primary copy"
+          >
+            <FiCopy size={'1.3rem'} />
+            Share
+          </button>
           <h3>{boardData.title}</h3>
           {isBingo ? <h3>YOU WON!</h3> : null}
           {boardData?.activeCells?.length === 0 ? (
-            <button className="btn btn-reverse" onClick={shuffleCells}>
+            <button className="btn btn-reverse shuffle" onClick={shuffleCells}>
               Shuffle
             </button>
           ) : (

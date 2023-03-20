@@ -45,9 +45,8 @@ const BoardItem = ({ board }) => {
       </div>
       <button
         title={!user ? 'Login to play' : null}
-        className={`btn ${user ? 'btn-reverse' : 'btn-disabled'}`}
+        className="btn btn-reverse"
         onClick={handlePlay}
-        disabled={!user ? true : false}
       >
         Play
       </button>

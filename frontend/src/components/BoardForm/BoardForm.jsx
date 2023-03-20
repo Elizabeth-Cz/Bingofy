@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createBoard, updateBoard } from '../../features/boards/boardSlice';
-import { MdAdd } from 'react-icons/md';
+import { MdAdd, MdHelpCenter } from 'react-icons/md';
 import './BoardForm.css';
 
 function BoardForm({ data }) {
@@ -160,7 +160,13 @@ function BoardForm({ data }) {
             checked={boardData.isPrivate}
             onChange={handleChange}
           />
-          <label htmlFor="isPrivate">Private</label>
+          <label htmlFor="isPrivate">
+            Private
+            <MdHelpCenter
+              className="help"
+              title={`Private boards won't appear on the Browse page`}
+            />
+          </label>
         </div>
         <div className="form-group">
           <button className="btn btn-block btn-primary" type="submit">

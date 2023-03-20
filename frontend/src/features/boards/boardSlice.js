@@ -50,16 +50,12 @@ export const getBoards = createAsyncThunk(
   }
 );
 
-// Get sinlge board
+// Get single board by id
 export const getBoard = createAsyncThunk(
-  'board/getOne',
+  'boards/getOne',
   async (id, thunkAPI) => {
     try {
-      // eliminate infinate loop of "Cannot read properties of null (reading 'token')"
-      if (thunkAPI.getState().auth.user) {
-        const token = thunkAPI.getState().auth.user.token;
-        return await boardService.getBoard(id, token);
-      }
+      return await boardService.getBoard(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -168,12 +164,14 @@ export const boardSlice = createSlice({
       })
       .addCase(getBoard.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isError = false;
         state.isSuccess = true;
         state.boards = action.payload;
       })
       .addCase(getBoard.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
         state.message = action.payload;
       })
       .addCase(getPublicBoards.pending, (state) => {

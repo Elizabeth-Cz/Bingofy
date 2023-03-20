@@ -16,7 +16,7 @@ router.route('/public').get(getPublicBoards);
 router
   .route('/:id')
   .delete(protect, deleteBoard)
-  .get(protect, getBoard)
+  .get(getBoard)
   .put(protect, updateBoard);
 
 module.exports = router;

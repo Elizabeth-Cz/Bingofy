@@ -360,6 +360,20 @@ input:checked + label:after {
   gap: 0.5rem;
 }
 
+.help {
+  margin-left: 5px;
+}
+
+.back:hover {
+  color: var(--main-color);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .boards-list {
   display: flex;
   flex-direction: column;
