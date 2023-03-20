@@ -127,7 +127,7 @@ const Home = () => {
           </Card>
         </div>
       </section>
-      {/* <section className="example section">
+      <section className="example section">
         <div className="info">
           <h2>Give it a try!</h2>
           <p>
@@ -135,8 +135,10 @@ const Home = () => {
             and see what happens!
           </p>
         </div>
-        <GameBoard board={data} />
-      </section> */}
+        <div>
+          <GameBoard board={data} />
+        </div>
+      </section>
     </div>
   );
 };

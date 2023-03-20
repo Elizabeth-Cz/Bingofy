@@ -92,7 +92,7 @@ const GameBoard = ({ board }) => {
 
   if (isLoading) return <Spinner />;
 
-  if (isSuccess)
+  if (isSuccess || board)
     return (
       <>
         <div className="buttons">
