@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Card from '../components/Card/Card';
 import { MdEditNote, MdReply } from 'react-icons/md';
@@ -8,7 +8,7 @@ import GameBoard from '../components/GameBoard/GameBoard';
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
 
-  const board = {
+  const data = {
     title: 'Friends',
     cells: [
       'Chandler makes a sarcastic comment',
@@ -118,7 +118,7 @@ const Home = () => {
             </p>
             <p>
               Did Joey say “How You Doin'”? Mark it on your board! Bingofy can
-              turn anything into an exciting game. 
+              turn anything into an exciting game.
             </p>
             <p>
               The first one 5 cases in a row wins the game - but you can easily
@@ -127,7 +127,7 @@ const Home = () => {
           </Card>
         </div>
       </section>
-      <section className="example section">
+      {/* <section className="example section">
         <div className="info">
           <h2>Give it a try!</h2>
           <p>
@@ -135,8 +135,8 @@ const Home = () => {
             and see what happens!
           </p>
         </div>
-        <GameBoard board={board} />
-      </section>
+        <GameBoard board={data} />
+      </section> */}
     </div>
   );
 };

@@ -31,6 +31,9 @@ const Browse = () => {
   if (isLoading) return <Spinner />;
 
   // TODO: improve search page by category
+  // TODO: feat: everyone can play all games! even not logged in,
+  //but public boards will sppear in search and provate won't.
+  //you can still share all boards
   return (
     <div className="content">
       <div className="form-group">
