@@ -49,9 +49,9 @@
   .board-grid {
     font-size: 11px;
     gap: 0;
+    aspect-ratio: unset;
   }
   .board-cell {
-    min-height: 90px;
     border-radius: 0;
     overflow-wrap: break-word;
     border-width: 1px;
@@ -61,7 +61,7 @@
     font-size: 12px;
   }
   .board-cell.active-cell {
-    border-radius: 15px;
+    border-radius: 10px;
   }
   .buttons {
     /* font-size: 13px; */
