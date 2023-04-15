@@ -1,6 +1,8 @@
 # Bingofy
 Bingofy is a MERN (MongoDB, Express, React, Node.js) stack application that allows users to create custom bingo boards and play them.
-
+<p align="center">
+<img src="./frontend/src/assets/mobile-screenshot.png" width="180" alt="mobile screenshot of bingo game" />
+</p>
 ## Frontend
 The frontend of the app is built with HTML, CSS, JavaScript, React, Redux, Redux Toolkit, React DOM, React Router DOM, React Toastify, React Icons, and Axios.
 
