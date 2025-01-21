@@ -34,20 +34,20 @@ function App() {
             This app doesn't support screens under 360px wide
           </h2>
           <div className="container">
-            <HeaderWithConditionalRendering />
+            {/*<HeaderWithConditionalRendering />*/}
 
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/*<Route path="/" element={<Home />} />*/}
               <Route path="/diro" element={<DIRO />} />
-              <Route path="/browse" element={<Browse />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/myboards" element={<MyBoards />} />
-              <Route path="/create" element={<CreateBoard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/myaccount" element={<MyAccount />} />
-              <Route path="/play/:id" element={<Game />} />
-              <Route path="/edit/:id" element={<CreateBoard />} />
+              {/*<Route path="/browse" element={<Browse />} />*/}
+              {/*<Route path="/contact" element={<Contact />} />*/}
+              {/*<Route path="/myboards" element={<MyBoards />} />*/}
+              {/*<Route path="/create" element={<CreateBoard />} />*/}
+              {/*<Route path="/login" element={<Login />} />*/}
+              {/*<Route path="/register" element={<Register />} />*/}
+              {/*<Route path="/myaccount" element={<MyAccount />} />*/}
+              {/*<Route path="/play/:id" element={<Game />} />*/}
+              {/*<Route path="/edit/:id" element={<CreateBoard />} />*/}
             </Routes>
             <Footer />
           </div>
