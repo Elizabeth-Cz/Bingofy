@@ -79,14 +79,26 @@ const GameBoard = ({ board }) => {
   };
 
   useEffect(() => {
+    // Shuffle cells when the component mounts
+    if (board?.cells) {
+      const shuffledCells = board.cells.slice().sort(() => Math.random() - 0.5);
+      setBoardData({
+        ...board,
+        cells: shuffledCells,
+      });
+    }
+  }, []); // Run only once on mount
+
+  useEffect(() => {
+    checkBingo(boardData.activeCells);
+  }, [checkBingo, boardData]);
+
+  useEffect(() => {
     if (isSuccess) {
       setBoardData(board);
     }
   }, [board, isSuccess]);
 
-  useEffect(() => {
-    checkBingo(boardData.activeCells);
-  }, [checkBingo, boardData]);
 
   if (isLoading) return <Spinner />;
 
