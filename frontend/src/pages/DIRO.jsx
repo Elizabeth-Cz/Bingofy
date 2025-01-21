@@ -39,9 +39,6 @@ const DIRO = () => {
 	return (
 		<div>
 			<section className="example section">
-				<div className="info">
-					<h2>Welcome to ICW BRP 13 DIRO Bingo!!!</h2>
-				</div>
 				<div>
 					<GameBoard board={data}/>
 				</div>
