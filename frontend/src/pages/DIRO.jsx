@@ -21,7 +21,7 @@ const DIRO = () => {
 			'"You\'re muted"',
 			'CV says "great job"',
 			'Frank\'s logo is incorporated on a slide',
-			'Team 1 goes first and overtime',
+			'"Good morning, good evening, good afternoon...',
 			'Most of the team is a room 1 person in a phone booth',
 			'Echo echo echo echo',
 			'“I’ll drop that in the chat”',
